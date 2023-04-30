@@ -1,0 +1,25 @@
+.leaguebutton{
+    -fx-background-color:  #343A40;
+    -fx-text-fill : #ffffff;
+    -fx-font-family: Verdana;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-alignment: TOP-LEFT;
+}
+.leaguebutton:hover{
+    -fx-background-color:  #6C757D;
+
+}
+.leaguebutton:pressed{
+    -fx-background-color:  #6C757D;
+
+}
+.leaguebutton:active{
+    -fx-background-color:  #6C757D;
+
+}
+.label{
+    -fx-text-fill : #ffffff;
+        -fx-font-size: 12px;
+        -fx-font-weight: bold;
+}
