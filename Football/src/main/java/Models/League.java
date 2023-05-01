@@ -4,9 +4,13 @@ public class League {
     private int id;
     private String name;
 
-    public League(int id, String name) {
+    private String league_logo;
+
+
+    public League(int id, String name, String league_logo) {
         this.id = id;
         this.name = name;
+        this.league_logo = league_logo;
     }
 
     public int getId() {
@@ -23,5 +27,13 @@ public class League {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLeague_logo() {
+        return league_logo;
+    }
+
+    public void setLeague_logo(String league_logo) {
+        this.league_logo = league_logo;
     }
 }
