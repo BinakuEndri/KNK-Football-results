@@ -36,4 +36,9 @@ public class League {
     public void setLeague_logo(String league_logo) {
         this.league_logo = league_logo;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

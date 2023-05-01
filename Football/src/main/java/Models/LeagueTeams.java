@@ -1,10 +1,10 @@
 package Models;
 
-public class League_Teams {
+public class LeagueTeams {
     private League league_id;
     private Team team_id;
 
-    public League_Teams(League league_id, Team team_id) {
+    public LeagueTeams(League league_id, Team team_id) {
         this.league_id = league_id;
         this.team_id = team_id;
     }

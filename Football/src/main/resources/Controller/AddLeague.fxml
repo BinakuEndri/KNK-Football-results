@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddLeagueController">
     <children>
@@ -19,99 +16,7 @@
             <left>
                 <VBox prefHeight="0.0" prefWidth="300.0" style="-fx-background-color: #343A40; -fx-background-radius: 0 50 0 0;" BorderPane.alignment="CENTER">
                     <children>
-                        <AnchorPane>
-                            <children>
-                                <VBox layoutY="113.0" prefHeight="580.0" prefWidth="302.0" spacing="10.0">
-                                    <children>
-                                        <Label prefHeight="17.0" prefWidth="292.0" stylesheets="@../css/button.css" text="Matches" />
-                                        <Button fx:id="btnPremierLeague" mnemonicParsing="false" prefHeight="43.0" prefWidth="299.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Add Match">
-                                            <graphic>
-                                                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="leagueimage">
-                                                    <image>
-                                                        <Image url="@../images/Admin/soccer-ball-icon-png-3.jpg" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                            <font>
-                                                <Font name="Verdana Bold" size="15.0" />
-                                            </font>
-                                        </Button>
-                                        <Button fx:id="btnPremierLeague1" mnemonicParsing="false" prefHeight="43.0" prefWidth="299.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage Matches">
-                                            <graphic>
-                                                <ImageView fitHeight="39.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" styleClass="leagueimage">
-                                                    <image>
-                                                        <Image url="@../images/Admin/stadium_208px.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                            <font>
-                                                <Font name="Verdana Bold" size="15.0" />
-                                            </font>
-                                        </Button>
-                                        <Label stylesheets="@../css/button.css" text="Players" />
-                                        <Button fx:id="btnLaLiga" mnemonicParsing="false" prefHeight="44.0" prefWidth="290.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Add Player">
-                                            <graphic>
-                                                <ImageView fitHeight="36.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../images/Admin/soccer_player_480px.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </Button>
-                                        <Button fx:id="btnLaLiga1" mnemonicParsing="false" prefHeight="44.0" prefWidth="290.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage Players">
-                                            <graphic>
-                                                <ImageView fitHeight="36.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../images/Admin/player_change_480px.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </Button>
-                                        <Label prefHeight="17.0" prefWidth="280.0" stylesheets="@../css/button.css" text="Clubs" />
-                                        <Button fx:id="btnSuperLiga" mnemonicParsing="false" prefHeight="43.0" prefWidth="292.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Add Club">
-                                            <graphic>
-                                                <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
-                                            </graphic>
-                                        </Button>
-                                        <Button fx:id="btnLaLiga11" mnemonicParsing="false" prefHeight="44.0" prefWidth="290.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage Club">
-                                            <graphic>
-                                                <ImageView fitHeight="38.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../images/Admin/performance_500px.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </Button>
-                                        <Label prefHeight="17.0" prefWidth="275.0" stylesheets="@../css/button.css" text="Leagues" />
-                                        <Button fx:id="btnSeriaA" mnemonicParsing="false" prefHeight="40.0" prefWidth="272.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Add League">
-                                            <graphic>
-                                                <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../images/Admin/trophy_480px.png" />
-                                                    </image></ImageView>
-                                            </graphic>
-                                        </Button>
-                                        <Button fx:id="btnLaLiga12" mnemonicParsing="false" prefHeight="41.0" prefWidth="272.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage League">
-                                            <graphic>
-                                                <ImageView fitHeight="36.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../images/Admin/leaderboard_480px.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </Button>
-                                    </children>
-                                    <padding>
-                                        <Insets left="20.0" right="10.0" top="10.0" />
-                                    </padding>
-                                </VBox>
-                                <ImageView fitHeight="100.0" fitWidth="222.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/FootyScore_2x1.png" />
-                                    </image>
-                                </ImageView>
-                            </children>
-                        </AnchorPane>
+                        <fx:include source="adminNavbar.fxml" />
                     </children>
                 </VBox>
             </left>
@@ -131,15 +36,15 @@
                                                 <Label prefHeight="18.0" prefWidth="72.0" text="Logo" />
                                                 <VBox alignment="CENTER" prefHeight="121.0" prefWidth="198.0" style="-fx-background-color: #CED4DA;">
                                        <children>
-                                                        <ImageView fx:id="leaguePhoto" fitHeight="160.0" fitWidth="130.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                                                        <ImageView fx:id="leaguePhoto" fitHeight="142.0" fitWidth="130.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                                 </VBox>
-                                                  <Button fx:id="btnBrowseImage" mnemonicParsing="false" onAction="#browseImage" text="Browes Photo" />
+                                                  <Button fx:id="btnBrowseImage" mnemonicParsing="false" onAction="#browseImage" prefHeight="31.0" prefWidth="97.0" text="Browes Photo" />
                                             </children>
                                         </VBox>
-                                        <VBox layoutX="336.0" layoutY="49.0" prefHeight="469.0" prefWidth="455.0" spacing="10.0">
+                                        <VBox layoutX="336.0" layoutY="49.0" prefHeight="472.0" prefWidth="455.0" spacing="10.0">
                                             <children>
-                                    <TableView fx:id="tableLeagues" prefHeight="469.0" prefWidth="450.0">
+                                    <TableView fx:id="tableLeagues" prefHeight="474.0" prefWidth="455.0">
                                       <columns>
                                         <TableColumn fx:id="colLeagueId" text="ID" />
                                         <TableColumn fx:id="colLeagueImage" prefWidth="140.0" text="Logo" />
@@ -150,8 +55,8 @@
                                             </children>
                                         </VBox>
                                         <Button fx:id="btnAddLeague" layoutX="53.0" layoutY="421.0" mnemonicParsing="false" onAction="#addLeague" prefHeight="38.0" prefWidth="92.0" text="Add League" />
-                              <Button fx:id="btnUpdateLeague" layoutX="172.0" layoutY="420.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="92.0" text="Update" />
-                              <Button fx:id="btnClearLeague" layoutX="53.0" layoutY="478.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="92.0" text="Clear" />
+                              <Button fx:id="btnUpdateLeague" layoutX="172.0" layoutY="420.0" mnemonicParsing="false" onAction="#updateLeague" prefHeight="40.0" prefWidth="92.0" text="Update" />
+                              <Button fx:id="btnClearLeague" layoutX="53.0" layoutY="478.0" mnemonicParsing="false" onAction="#clearLeagueFields" prefHeight="40.0" prefWidth="92.0" text="Clear" />
                               <Button fx:id="btnDeleteLeague" layoutX="172.0" layoutY="478.0" mnemonicParsing="false" onAction="#deleteLeague" prefHeight="40.0" prefWidth="92.0" text="Delete" />
                                     </children>
                                 </AnchorPane>

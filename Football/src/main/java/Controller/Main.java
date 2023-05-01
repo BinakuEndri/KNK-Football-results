@@ -10,7 +10,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                Main.class.getResource("AddLeague.fxml")
+                Main.class.getResource("manageTeam.fxml")
         );
 
         Scene scene = new Scene(fxmlLoader.load(),1200,700);

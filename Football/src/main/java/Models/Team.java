@@ -6,13 +6,15 @@ public class Team {
     private int id;
     private String name;
     private String stadium;
-    private Date year;
+    private String year;
 
-    public Team(int id, String name, String stadium, Date year) {
+    private String logo;
+    public Team(int id, String name, String stadium, String year, String logo) {
         this.id = id;
         this.name = name;
         this.stadium = stadium;
         this.year = year;
+        this.logo = logo;
     }
 
     public int getId() {
@@ -39,11 +41,19 @@ public class Team {
         this.stadium = stadium;
     }
 
-    public Date getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(Date year) {
+    public void setYear(String year) {
         this.year = year;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

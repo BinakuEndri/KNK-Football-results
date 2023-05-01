@@ -2,6 +2,8 @@ package Controller;
 
 import Models.League;
 import Repository.LeagueRepository;
+import Services.BrowseImage;
+import Services.CostumedAlerts;
 import Services.ImagesToResources;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,56 +11,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AddLeagueController implements Initializable {
-    @FXML
-    private Button btnAddLeague;
-
-    @FXML
-    private Button btnBrowseImage;
-
-    @FXML
-    private Button btnClearLeague;
-
-    @FXML
-    private Button btnDeleteLeague;
-
-    @FXML
-    private Button btnLaLiga;
-
-    @FXML
-    private Button btnLaLiga1;
-
-    @FXML
-    private Button btnLaLiga11;
-
-    @FXML
-    private Button btnLaLiga12;
-
-    @FXML
-    private Button btnPremierLeague;
-
-    @FXML
-    private Button btnPremierLeague1;
-
-    @FXML
-    private Button btnSeriaA;
-
-    @FXML
-    private Button btnSuperLiga;
-
-    @FXML
-    private Button btnUpdateLeague;
 
     @FXML
     private TableColumn<League, Integer> colLeagueId;
@@ -87,6 +48,10 @@ public class AddLeagueController implements Initializable {
 
     private File filesrc;
 
+    private String imagePath = ImagesToResources.getImagePath();
+
+
+
     @FXML
     void addLeague(ActionEvent event){
         int leagueId;
@@ -99,20 +64,51 @@ public class AddLeagueController implements Initializable {
         try {
             LeagueRepository.insert(league);
             ImagesToResources.imageToResources(leagueName,imageName,imagePath);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                    "The League has been added successfully ",
-                    ButtonType.CLOSE);
-            alert.showAndWait();
+            CostumedAlerts.costumeAlert(Alert.AlertType.CONFIRMATION,
+                    "ManageLeagues",
+                    "Manage Leagues",
+                    "The League has been added successfully ");
             fetchData();
 
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR,
-                    "The League failed to be added ",
-                    ButtonType.CLOSE);
-            alert.showAndWait();
+            CostumedAlerts.costumeAlert(Alert.AlertType.CONFIRMATION,
+                    "ManageLeagues",
+                    "Manage Leagues",
+                    "The League failed to be added");
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    public void deleteLeague(ActionEvent actionEvent){
+        LeagueRepository.Delete(tableLeagues);
+        fetchData();
+    }
+
+    @FXML
+    public void updateLeague(ActionEvent actionEvent){
+        int index = tableLeagues.getSelectionModel().getSelectedIndex();
+        String imageName = tableLeagues.getItems().get(index).getLeague_logo();
+        String leaguename = tableLeagues.getItems().get(index).getName();
+        File file = new File(ImagesToResources.getImagePath()+"\\"+leaguename+"\\"+imageName);
+        Path path = file.toPath();
+        if(filesrc != null) {
+             imageName = filesrc.getName();
+             path = filesrc.toPath();
+        }
+        String name = txtLeagueName.getText();
+        name.trim();
+        League league = new League(1,name,imageName);
+        LeagueRepository.Update(tableLeagues,league,path);
+        fetchData();
+        clearLeagueFields(actionEvent);
+    }
+    @FXML
+    public void clearLeagueFields(ActionEvent actionEvent){
+        leaguePhoto.setImage(null);
+        txtLeagueName.setText(null);
+        txtLeagueId.setText(null);
+    }
+
     public void fetchData(){
         try {
             LeagueRepository.fetchToTable(tableLeagues,colLeagueId,colLeagueName,colLeagueImage);
@@ -122,12 +118,7 @@ public class AddLeagueController implements Initializable {
 
     }
 
-    @FXML
-    public void deleteLeague(ActionEvent actionEvent){
-        LeagueRepository.Delete(tableLeagues);
-        fetchData();
-    }
-    FileChooser fileChooser = new FileChooser();
+
     public void getDataFromTable(){
         tableLeagues.setRowFactory( tv -> {
             TableRow<League> myRow = new TableRow<>();
@@ -139,7 +130,7 @@ public class AddLeagueController implements Initializable {
                     String image = tableLeagues.getItems().get(myIndex).getLeague_logo();
                     txtLeagueId.setText(id);
                     txtLeagueName.setText(name);
-                    String path = "C:\\Users\\PC-SYSTEMS\\IdeaProjects\\KNK-Football-results\\Football\\src\\main\\resources\\images\\"+name+"\\"+image;
+                    String path = imagePath +"\\"+name+"\\"+image;
                     this.leaguePhoto.setImage( new Image(path));
                 }
             });
@@ -148,17 +139,12 @@ public class AddLeagueController implements Initializable {
     }
     @FXML
     void browseImage(ActionEvent event){
-        fileChooser.setInitialDirectory(new File("C:\\Users\\PC-SYSTEMS\\Desktop\\fiek"));
-        this.filesrc = fileChooser.showOpenDialog(new Stage());
-        if(this.filesrc != null) {
-            Image image = new Image(this.filesrc.getAbsolutePath());
-            this.leaguePhoto.setImage(image);
-        }
+        filesrc = BrowseImage.browseImage(imagePath,filesrc,leaguePhoto);
     }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fetchData();
         getDataFromTable();
     }
+
 }
