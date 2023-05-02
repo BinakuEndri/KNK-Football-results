@@ -1,16 +1,18 @@
 package Models;
 
+import java.sql.Date;
+
 public class Coach {
     private int id;
     private Nation nationality;
     private String name;
-    private int age;
+    private Date birthday;
 
-    public Coach(int id, Nation nationality, String name, int age) {
+    public Coach(int id, Nation nationality, String name, Date birthday) {
         this.id = id;
         this.nationality = nationality;
         this.name = name;
-        this.age = age;
+        this.birthday = birthday;
     }
 
     public int getId() {
@@ -37,11 +39,11 @@ public class Coach {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 }

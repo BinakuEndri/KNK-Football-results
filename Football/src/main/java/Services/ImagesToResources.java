@@ -38,8 +38,11 @@ public class ImagesToResources {
             folder.mkdir();
             File newFile = new File(path + "\\" + imageName);
             Files.copy(sourcePath, newFile.toPath());
+        } else if (sourcePath == filedest.toPath()) {
+            //...
         } else {
             Files.copy(sourcePath, filedest.toPath());
         }
+
     }
 }

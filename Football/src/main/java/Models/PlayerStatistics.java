@@ -1,6 +1,6 @@
 package Models;
 
-public class Player_Statistics {
+public class PlayerStatistics {
     private int id;
     private Player player_id;
     private int goal;
@@ -9,7 +9,7 @@ public class Player_Statistics {
     private int yellow_cards;
     private int red_cards;
 
-    public Player_Statistics(int id, Player player_id, int goal, int assist, int minutes_played, int yellow_cards, int red_cards) {
+    public PlayerStatistics(int id, Player player_id, int goal, int assist, int minutes_played, int yellow_cards, int red_cards) {
         this.id = id;
         this.player_id = player_id;
         this.goal = goal;

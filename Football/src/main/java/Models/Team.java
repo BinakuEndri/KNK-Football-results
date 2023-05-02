@@ -8,6 +8,8 @@ public class Team {
     private String stadium;
     private String year;
 
+    private League league;
+
     private String logo;
     public Team(int id, String name, String stadium, String year, String logo) {
         this.id = id;
@@ -55,5 +57,13 @@ public class Team {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    public League getLeague() {
+        return league;
+    }
+
+    public void setLeague(League league) {
+        this.league = league;
     }
 }

@@ -1,10 +1,10 @@
 package Models;
 
-public class Squad_Players {
+public class SquadPlayers {
     private Squad squad_id;
     private Player player_id;
 
-    public Squad_Players(Squad squad_id, Player player_id) {
+    public SquadPlayers(Squad squad_id, Player player_id) {
         this.squad_id = squad_id;
         this.player_id = player_id;
     }

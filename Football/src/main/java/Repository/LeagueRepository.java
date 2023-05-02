@@ -7,6 +7,7 @@ import Services.ImagesToResources;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,7 +19,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public  class LeagueRepository {
 
@@ -126,4 +126,28 @@ public  class LeagueRepository {
         return leagues;
     }
 
+    public static League findById(int leagueId) throws SQLException {
+        String sql = "Select * from league where id = ?";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,leagueId);
+        ResultSet result = statement.executeQuery();
+        while (result.next()){
+            League league = new League(result.getInt("id"),result.getString("name"),result.getString("leaguelogo"));
+            return league;
+        }
+        return null;
+    }
+
+    public static ChoiceBox<League> setValues(ChoiceBox<League> leagues){
+        try {
+            for (League league : getAllLeagues()) {
+                leagues.getItems().add(league);
+            }
+            return leagues;
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }

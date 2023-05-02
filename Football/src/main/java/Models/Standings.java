@@ -25,6 +25,8 @@ public class Standings {
         this.points = points;
     }
 
+
+
     public int getId() {
         return id;
     }

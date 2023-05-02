@@ -19,7 +19,7 @@ import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AddLeagueController implements Initializable {
+public class ManageLeagueController implements Initializable {
 
     @FXML
     private TableColumn<League, Integer> colLeagueId;
