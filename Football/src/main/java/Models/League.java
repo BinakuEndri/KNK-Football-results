@@ -7,6 +7,8 @@ public class League {
     private String league_logo;
 
 
+
+
     public League(int id, String name, String league_logo) {
         this.id = id;
         this.name = name;
@@ -40,5 +42,16 @@ public class League {
     @Override
     public String toString() {
         return this.name;
+    }
+
+    private int numberOfTeams;
+
+
+    public int getNumberOfTeams() {
+        return numberOfTeams;
+    }
+
+    public void setNumberOfTeams(int numberOfTeams) {
+        this.numberOfTeams = numberOfTeams;
     }
 }

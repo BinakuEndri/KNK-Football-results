@@ -34,4 +34,9 @@ public class Nation {
     public void setFlag(String flag) {
         this.flag = flag;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

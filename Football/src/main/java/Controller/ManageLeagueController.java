@@ -30,8 +30,7 @@ public class ManageLeagueController implements Initializable {
     @FXML
     private TableColumn<League, Integer> colLeagueNumberOfTeams;
 
-    @FXML
-    private TableColumn<League, String> colLeagueImage;
+
 
     @FXML
     private ImageView leaguePhoto;
@@ -105,13 +104,13 @@ public class ManageLeagueController implements Initializable {
     @FXML
     public void clearLeagueFields(ActionEvent actionEvent){
         leaguePhoto.setImage(null);
-        txtLeagueName.setText(null);
-        txtLeagueId.setText(null);
+        txtLeagueName.clear();
+        txtLeagueId.clear();
     }
 
     public void fetchData(){
         try {
-            LeagueRepository.fetchToTable(tableLeagues,colLeagueId,colLeagueName,colLeagueImage);
+            LeagueRepository.fetchToTable(tableLeagues,colLeagueId,colLeagueName,colLeagueNumberOfTeams);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -124,14 +123,20 @@ public class ManageLeagueController implements Initializable {
             TableRow<League> myRow = new TableRow<>();
             myRow.setOnMouseClicked( event ->{
                 if (event.getClickCount() == 1 && (!myRow.isEmpty())){
-                   int myIndex = tableLeagues.getSelectionModel().getSelectedIndex();
-                    String id = String.valueOf(tableLeagues.getItems().get(myIndex).getId());
-                    String name = tableLeagues.getItems().get(myIndex).getName();
-                    String image = tableLeagues.getItems().get(myIndex).getLeague_logo();
-                    txtLeagueId.setText(id);
-                    txtLeagueName.setText(name);
-                    String path = imagePath +"\\"+name+"\\"+image;
-                    this.leaguePhoto.setImage( new Image(path));
+                    int myIndex = tableLeagues.getSelectionModel().getSelectedIndex();
+                    int id = tableLeagues.getItems().get(myIndex).getId();
+                    try {
+                        League league = LeagueRepository.findById(id);
+                        String name = league.getName();
+                        String image = league.getLeague_logo();
+                        txtLeagueId.setText(String.valueOf(league.getId()));
+                        txtLeagueName.setText(league.getName());
+                        String path = imagePath +"\\"+name+"\\"+image;
+                        this.leaguePhoto.setImage( new Image(path));
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
                 }
             });
             return myRow;

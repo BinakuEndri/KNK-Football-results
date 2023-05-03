@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class PlayerStatisticsRepository {
     public static void insertByPlayer(PlayerStatistics playerStatistics) throws SQLException {
-        String sql = "INSERT INTO player_statistics (player_id,) " +
+        String sql = "INSERT INTO player_statistics (player_id) " +
                 "Values (?)";
         Connection connection = ConnectionUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);

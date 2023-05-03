@@ -455,3 +455,47 @@ VALUES
 ('South Africa', 'za.png'),
 ('Zambia', 'zm.png'),
 ('Zimbabwe', 'zw.png');
+
+
+Select t.id, t.name ,t.stadium ,t.year, t.logo, l.name from Team t
+inner join league_teams lt on lt.team_id = t.id
+inner join league l on l.id = lt.league_id where l.id = 1;
+
+/*delete from team where id =3;
+delete from squad where id =2;
+delete from league_teams where team_id =3;*/
+
+alter table player 
+	rename column age to birthday;
+
+alter table player
+	modify column birthday date;
+
+alter table coach 
+	rename column age to birthday;
+
+alter table coach
+	modify column birthday date;
+    
+alter table player 
+	add column image text;
+    
+    
+Select p.id, p.name, p.birthday, l.name, n.name , p.position , t.name From player p 
+                Inner join squad_players sp on sp.player_id = p.id 
+                Inner join squad s on sp.squad_id = s.id 
+                Inner join team t on t.id = s.team_id
+                Inner join nation n on n.id = p.nationality
+				Inner join league_teams lt on lt.team_id = t.id
+                Inner join league l on l.id = lt.league_id;
+                
+Select l.id, l.name , count(lt.team_id) from league l
+inner join league_teams lt on lt.league_id = l.id
+group by l.id;
+
+
+SELECT l.id, l.name, COUNT(t.id) AS team_count
+FROM League l
+LEFT JOIN League_Teams lt ON l.id = lt.league_id
+LEFT JOIN Team t ON lt.team_id = t.id
+GROUP BY l.id, l.name;

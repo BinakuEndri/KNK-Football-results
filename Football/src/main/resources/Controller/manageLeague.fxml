@@ -46,10 +46,9 @@
                                             <children>
                                     <TableView fx:id="tableLeagues" prefHeight="474.0" prefWidth="455.0">
                                       <columns>
-                                        <TableColumn fx:id="colLeagueId" text="ID" />
-                                        <TableColumn fx:id="colLeagueImage" prefWidth="140.0" text="Logo" />
-                                          <TableColumn fx:id="colLeagueName" prefWidth="124.0" text="Name" />
-                                          <TableColumn fx:id="colLeagueNumberOfTeams" prefWidth="110.0" text="Numer of Teams" />
+                                        <TableColumn fx:id="colLeagueId" prefWidth="97.0" text="ID" />
+                                          <TableColumn fx:id="colLeagueName" prefWidth="231.0" text="Name" />
+                                          <TableColumn fx:id="colLeagueNumberOfTeams" prefWidth="126.0" text="Numer of Teams" />
                                       </columns>
                                     </TableView>
                                             </children>

@@ -29,7 +29,7 @@ public class ManageTeamController implements Initializable {
     private Button btnBrowse;
 
     @FXML
-    private ChoiceBox<League> choseLeague;
+    private ComboBox<League> choseLeague;
 
     @FXML
     private ImageView teamImage;
@@ -48,8 +48,6 @@ public class ManageTeamController implements Initializable {
     @FXML
     private TableColumn<Team, League> colLeague;
 
-    @FXML
-    private TableColumn<Team, String> colLogo;
 
     @FXML
     private TableColumn<Team, String> colName;
@@ -62,7 +60,7 @@ public class ManageTeamController implements Initializable {
     @FXML
     private TableView<Team> teamTable;
     @FXML
-    private ChoiceBox<League> choseLeagueToTable;
+    private ComboBox<League> choseLeagueToTable;
     private File fileSource ;
     private static String imagePath = ImagesToResources.getImagePath();
 
@@ -71,7 +69,6 @@ public class ManageTeamController implements Initializable {
     @FXML
     void addTeam(ActionEvent event) {
        League league = choseLeague.getValue();
-        int leagueId;
         String teamName,teamYear,teamStadium, imageName;
         teamName = txtTeamName.getText();
         teamStadium =txtStadiumName.getText();
@@ -99,7 +96,7 @@ public class ManageTeamController implements Initializable {
 
     public void fetchData(){
         try {
-            TeamRepository.fetchToTable(teamTable,colId,colName,colLogo,colStadium,colYear,colLeague);
+            TeamRepository.fetchToTable(teamTable,colId,colName,colStadium,colYear,colLeague);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -112,17 +109,25 @@ public class ManageTeamController implements Initializable {
             myRow.setOnMouseClicked( event ->{
                 if (event.getClickCount() == 1 && (!myRow.isEmpty())){
                     int myIndex = teamTable.getSelectionModel().getSelectedIndex();
-                    String id = String.valueOf(teamTable.getItems().get(myIndex).getId());
-                    String name = teamTable.getItems().get(myIndex).getName();
-                    String image = teamTable.getItems().get(myIndex).getLogo();
-                    String year = teamTable.getItems().get(myIndex).getYear();
-                    League league = teamTable.getItems().get(myIndex).getLeague();
-                    txtStadiumName.setText(id);
-                    txtTeamName.setText(name);
-                    txtTeamYear.setText(year);
-                    choseLeague.setValue(league);
-                    String path = imagePath+"\\"+league+"\\"+name+"\\"+image;
-                    this.teamImage.setImage( new Image(path));
+                    int id = teamTable.getItems().get(myIndex).getId();
+
+                    try {
+                        Team team = TeamRepository.findById(id);
+                        String name = team.getName();
+                        String image = team.getLogo();
+                        String year = team.getYear();
+                        String stadium = team.getStadium();
+                        League league = teamTable.getItems().get(myIndex).getLeague();
+                        txtStadiumName.setText(stadium);
+                        txtTeamName.setText(name);
+                        txtTeamYear.setText(year);
+                        choseLeague.setValue(league);
+                        String path = imagePath+"\\"+league+"\\"+name+"\\"+image;
+                        this.teamImage.setImage( new Image(path));
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
                 }
             });
             return myRow;
@@ -137,23 +142,29 @@ public class ManageTeamController implements Initializable {
 
     @FXML
     void clearTeam(ActionEvent event) {
-
+        txtTeamYear.clear();
+        txtTeamName.clear();
+        txtStadiumName.clear();
+        choseLeague.getItems().clear();
+        teamImage.setImage(null);
     }
 
     @FXML
     void deleteTeam(ActionEvent event) {
-
+        TeamRepository.Delete(teamTable);
+        fetchData();
     }
 
     @FXML
     void updateTeam(ActionEvent event) {
 
     }
+
     @FXML
     void fetchFilteredData(ActionEvent event){
         League league = choseLeagueToTable.getValue();
         try {
-            TeamRepository.fetchToTableByLeague(teamTable,colId,colName,colLogo,colStadium,colYear,colLeague,league);
+            TeamRepository.fetchToTableByLeague(teamTable,colId,colName,colStadium,colYear,colLeague,league);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

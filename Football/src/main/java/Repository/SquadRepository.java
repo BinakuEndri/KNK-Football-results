@@ -15,7 +15,6 @@ public class SquadRepository {
 
     public static void insertByTeam(Squad squad) throws SQLException {
         String sql = "INSERT INTO squad (team_id) " +
-
                 "Values (?)";
         Connection connection = ConnectionUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -41,7 +40,7 @@ public class SquadRepository {
     }
 
     public static Squad findIdByTeam(Team team) throws SQLException {
-        String sql = "Select * from squad where id = ?";
+        String sql = "Select id, team_id, coach_id from squad where team_id = ?";
         Connection connection = ConnectionUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1,team.getId());

@@ -6,10 +6,7 @@ import Services.CostumedAlerts;
 import Services.ImagesToResources;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.File;
@@ -35,16 +32,16 @@ public  class LeagueRepository {
     public static void Delete(TableView<League> table) {
         int index = table.getSelectionModel().getSelectedIndex();
         int id = table.getItems().get(index).getId();
-        String name = table.getItems().get(index).getName();
-        String image = table.getItems().get(index).getLeague_logo();
+
 
         try {
+            League league = findById(id);
             String sql = "Delete From league where id = ?";
             Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1,id);
             statement.executeUpdate();
-            String path = ImagesToResources.getImagePath()+"\\"+name +"\\"+image;
+            String path = ImagesToResources.getImagePath()+"\\"+league.getName() +"\\"+league.getLeague_logo();
             File file = new File(path);
             if(file.delete()){
                 System.out.println("File deleted successfuly");
@@ -92,10 +89,13 @@ public  class LeagueRepository {
     }
 
     public static void fetchToTable(TableView<League> table,
-                                    TableColumn<League, Integer> colid, TableColumn<League,String > colname,
-                                    TableColumn<League, String> colimage) throws SQLException {
+                                    TableColumn<League, Integer> colid, TableColumn<League,String > colname, TableColumn<League, Integer> colNumberOfTeams) throws SQLException {
         ObservableList<League> leagues = FXCollections.observableArrayList();
-        String sql = "Select id, name, leaguelogo From league";
+        String sql = "SELECT l.id, l.name, COUNT(t.id) AS team_count\n" +
+                "FROM League l\n" +
+                "LEFT JOIN League_Teams lt ON l.id = lt.league_id\n" +
+                "LEFT JOIN Team t ON lt.team_id = t.id\n" +
+                "GROUP BY l.id, l.name;";
         Connection connection = ConnectionUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet result  = statement.executeQuery();
@@ -104,13 +104,13 @@ public  class LeagueRepository {
             League league = new League(1," "," ");
             league.setId(result.getInt("id"));
             league.setName(result.getString("name"));
-            league.setLeague_logo(result.getString("leaguelogo"));
+            league.setNumberOfTeams(result.getInt("team_count"));
             leagues.add(league);
         }
         table.setItems(leagues);
         colid.setCellValueFactory(new PropertyValueFactory<>("id"));
         colname.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colimage.setCellValueFactory(new PropertyValueFactory<>("league_logo"));
+        colNumberOfTeams.setCellValueFactory(new PropertyValueFactory<>("numberOfTeams"));
     }
     public static ObservableList<League> getAllLeagues() throws SQLException {
         ObservableList leagues = FXCollections.observableArrayList();
@@ -139,7 +139,7 @@ public  class LeagueRepository {
         return null;
     }
 
-    public static ChoiceBox<League> setValues(ChoiceBox<League> leagues){
+    public static ComboBox<League> setValues(ComboBox<League> leagues){
         try {
             for (League league : getAllLeagues()) {
                 leagues.getItems().add(league);

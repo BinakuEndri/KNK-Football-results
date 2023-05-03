@@ -10,12 +10,12 @@ import java.sql.SQLException;
 
 public class SquadPlayerRepository {
     public static void insert(SquadPlayers squadPlayer) throws SQLException {
-        String sql = "INSERT INTO squad_player (squad_id,player_id) " +
+        String sql = "INSERT INTO squad_players (squad_id,player_id) " +
                 "Values (?,?)";
         Connection connection = ConnectionUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, squadPlayer.getSquad_id().getId());
-        statement.setInt(1, squadPlayer.getPlayer_id().getId());
+        statement.setInt(2, squadPlayer.getPlayer_id().getId());
 
         statement.executeUpdate();
 
