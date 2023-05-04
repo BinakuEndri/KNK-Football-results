@@ -499,3 +499,13 @@ FROM League l
 LEFT JOIN League_Teams lt ON l.id = lt.league_id
 LEFT JOIN Team t ON lt.team_id = t.id
 GROUP BY l.id, l.name;
+
+
+
+    
+Select c.id, c.name, c.birthday, /*l.name, n.name ,*/ t.name From coach c
+                Inner join squad s on s.coach_id = c.id 
+                Inner join team t on t.id = s.team_id
+             /*   Inner join nation n on n.id = c.nationality
+				Inner join league_teams lt on lt.team_id = t.id
+                Inner join league l on l.id = lt.league_id*/;

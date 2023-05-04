@@ -7,12 +7,14 @@ public class Coach {
     private Nation nationality;
     private String name;
     private Date birthday;
+    private String image;
 
-    public Coach(int id, Nation nationality, String name, Date birthday) {
+    public Coach(int id, String name, Date birthday,Nation nationality,String image) {
         this.id = id;
         this.nationality = nationality;
         this.name = name;
         this.birthday = birthday;
+        this.image= image;
     }
 
     public int getId() {
@@ -45,5 +47,32 @@ public class Coach {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    private League league;
+    private Team team;
+
+    public League getLeague() {
+        return league;
+    }
+
+    public void setLeague(League league) {
+        this.league = league;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

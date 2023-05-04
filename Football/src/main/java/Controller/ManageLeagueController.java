@@ -30,8 +30,6 @@ public class ManageLeagueController implements Initializable {
     @FXML
     private TableColumn<League, Integer> colLeagueNumberOfTeams;
 
-
-
     @FXML
     private ImageView leaguePhoto;
 
@@ -43,7 +41,6 @@ public class ManageLeagueController implements Initializable {
 
     @FXML
     private TextField txtLeagueName;
-
 
     private File filesrc;
 

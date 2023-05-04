@@ -1,5 +1,6 @@
 package Repository;
 
+import Models.Coach;
 import Models.League;
 import Models.Squad;
 import Models.Team;
@@ -22,9 +23,17 @@ public class SquadRepository {
         statement.executeUpdate();
 
     }
+    public static void insertByCoach(Squad squad,Coach coach) throws SQLException {
+        String sql = "Update squad set coach_id = ? Where id =? ";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, coach.getId());
+        statement.setInt(2, squad.getId());
+        statement.executeUpdate();
+    }
 
     public static Squad findById(int squadId) throws SQLException {
-        String sql = "Select * from squad where id = ?";
+        String sql = "Select * from squad where id  ?=";
         Connection connection = ConnectionUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1,squadId);
@@ -54,4 +63,6 @@ public class SquadRepository {
         }
         return null;
     }
+
+
 }

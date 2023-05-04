@@ -36,6 +36,30 @@ public class PlayerRepository {
 
 
     }
+    public static void Delete(TableView<Player> tablePlayer) {
+        int index = tablePlayer.getSelectionModel().getSelectedIndex();
+        int id = tablePlayer.getItems().get(index).getId();
+        League league = tablePlayer.getItems().get(index).getLeague();
+        Team team = tablePlayer.getItems().get(index).getTeam();
+        try {
+            Player player = findById(id);
+            String sql = "Delete From player where id = ?";
+            Connection connection = ConnectionUtil.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1,id);
+            statement.executeUpdate();
+            String path = ImagesToResources.getImagePath()+"\\"+league+"\\"+team +"\\"+player.getImage();
+            File file = new File(path);
+            if(file.delete()){
+                System.out.println("File deleted successfully");
+            }
+            CostumedAlerts.costumeAlert(Alert.AlertType.INFORMATION,"Manage Players","Manage Players","The player has been deleted!");
+        } catch (SQLException e) {
+            CostumedAlerts.costumeAlert(Alert.AlertType.ERROR,"Manage Players","Manage Players","The player failed to be deleted!");
+
+            throw new RuntimeException(e);
+        }
+    }
     public static int findIdByData(Player player) throws SQLException {
         String sql = "Select * from player where name=? and position =? and birthday= ? and nationality=? and image = ?";
         Connection connection = ConnectionUtil.getConnection();
@@ -55,6 +79,27 @@ public class PlayerRepository {
         }
 
     }
+
+    public static Player findById(int playerId) throws SQLException {
+        String sql = "Select * from player where id = ?";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,playerId);
+        ResultSet result = statement.executeQuery();
+        while (result.next()){
+            Player player = new Player(result.getInt("id"),
+                    result.getString("name"),
+                    result.getString("position"),
+                    result.getDate("birthday"),
+                    NationRepository.findById(result.getInt("nationality")),
+                    result.getString("image")
+
+            );
+            return player;
+        }
+        return null;
+    }
+
 
     public static void fetchToTable(
             TableView<Player> tablePlayer,
@@ -80,71 +125,10 @@ public class PlayerRepository {
         ResultSet result  = statement.executeQuery();
 
         while (result.next()){
-            Player player = new Player(1,null,null, null,null,null);
-            player.setId(result.getInt("id"));
-            player.setName(result.getString("playerName"));
-            player.setBirthday(result.getDate("birthday"));
-            player.setLeague(LeagueRepository.findById(result.getInt("leagueId")));
-            player.setTeam(TeamRepository.findById(result.getInt("teamId")));
-            player.setNationality(NationRepository.findById(result.getInt("nationId")));
-            player.setPosition(result.getString("position"));
-
-            players.add(player);
+            dataToList(players,result);
         }
-        tablePlayer.setItems(players);
-        colIdPlayer.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNamePlayer.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colPlayerBirthday.setCellValueFactory(new PropertyValueFactory<>("birthday"));
-        colPlayerNation.setCellValueFactory(new PropertyValueFactory<>("nationality"));
-        colPlayerTeam.setCellValueFactory(new PropertyValueFactory<>("team"));
-        colPlayerLeague.setCellValueFactory(new PropertyValueFactory<>("league"));
-        colPlayerPos.setCellValueFactory(new PropertyValueFactory<>("position"));
+        objectToTable(tablePlayer,colIdPlayer,colNamePlayer,colPlayerBirthday,colPlayerNation,colPlayerPos,colPlayerTeam,colPlayerLeague,players);
 
-    }
-
-    public static Player findById(int playerId) throws SQLException {
-        String sql = "Select * from player where id = ?";
-        Connection connection = ConnectionUtil.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1,playerId);
-        ResultSet result = statement.executeQuery();
-        while (result.next()){
-            Player player = new Player(result.getInt("id"),
-                    result.getString("name"),
-                    result.getString("position"),
-                    result.getDate("birthday"),
-                    NationRepository.findById(result.getInt("nationality")),
-                    result.getString("image")
-
-            );
-            return player;
-        }
-        return null;
-    }
-
-    public static void Delete(TableView<Player> tablePlayer) {
-        int index = tablePlayer.getSelectionModel().getSelectedIndex();
-        int id = tablePlayer.getItems().get(index).getId();
-        League league = tablePlayer.getItems().get(index).getLeague();
-        Team team = tablePlayer.getItems().get(index).getTeam();
-        try {
-            Player player = findById(id);
-            String sql = "Delete From player where id = ?";
-            Connection connection = ConnectionUtil.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1,id);
-            statement.executeUpdate();
-            String path = ImagesToResources.getImagePath()+"\\"+league+"\\"+team +"\\"+player.getImage();
-            File file = new File(path);
-            if(file.delete()){
-                System.out.println("File deleted successfuly");
-            }
-            CostumedAlerts.costumeAlert(Alert.AlertType.INFORMATION,"Manage Players","Manage Players","The player has been deleted!");
-        } catch (SQLException e) {
-            CostumedAlerts.costumeAlert(Alert.AlertType.ERROR,"Manage Players","Manage Players","The player failed to be deleted!");
-
-            throw new RuntimeException(e);
-        }
     }
 
     public static void fetchToTableByLeague(TableView<Player> tablePlayer, TableColumn<Player, Integer> colIdPlayer,
@@ -168,25 +152,10 @@ public class PlayerRepository {
         ResultSet result  = statement.executeQuery();
 
         while (result.next()){
-            Player player = new Player(1,null,null, null,null,null);
-            player.setId(result.getInt("id"));
-            player.setName(result.getString("playerName"));
-            player.setPosition(result.getString("position"));
-            player.setNationality(NationRepository.findById(result.getInt("nationId")));
-            player.setBirthday(result.getDate("birthday"));
-            player.setTeam(TeamRepository.findById(result.getInt("teamId")));
-            player.setLeague(LeagueRepository.findById(result.getInt("leagueId")));
+            dataToList(players,result);
 
-            players.add(player);
         }
-        tablePlayer.setItems(players);
-        colIdPlayer.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNamePlayer.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colPlayerBirthday.setCellValueFactory(new PropertyValueFactory<>("birthday"));
-        colPlayerNation.setCellValueFactory(new PropertyValueFactory<>("nationality"));
-        colPlayerPos.setCellValueFactory(new PropertyValueFactory<>("position"));
-        colPlayerTeam.setCellValueFactory(new PropertyValueFactory<>("team"));
-        colPlayerLeague.setCellValueFactory(new PropertyValueFactory<>("league"));
+        objectToTable(tablePlayer,colIdPlayer,colNamePlayer,colPlayerBirthday,colPlayerNation,colPlayerPos,colPlayerTeam,colPlayerLeague,players);
     }
 
     public static void fetchToTableByTeam(TableView<Player> tablePlayer, TableColumn<Player, Integer> colIdPlayer,
@@ -210,17 +179,27 @@ public class PlayerRepository {
         ResultSet result  = statement.executeQuery();
 
         while (result.next()){
-            Player player = new Player(1,null,null, null,null,null);
-            player.setId(result.getInt("id"));
-            player.setName(result.getString("playerName"));
-            player.setPosition(result.getString("position"));
-            player.setNationality(NationRepository.findById(result.getInt("nationId")));
-            player.setBirthday(result.getDate("birthday"));
-            player.setTeam(TeamRepository.findById(result.getInt("teamId")));
-            player.setLeague(LeagueRepository.findById(result.getInt("leagueId")));
-
-            players.add(player);
+            dataToList(players,result);
         }
+        objectToTable(tablePlayer,colIdPlayer,colNamePlayer,colPlayerBirthday,colPlayerNation,colPlayerPos,colPlayerTeam,colPlayerLeague,players);
+
+    }
+    static void dataToList(ObservableList<Player> players,ResultSet result) throws SQLException {
+        Player player = new Player(1,null,null, null,null,null);
+        player.setId(result.getInt("id"));
+        player.setName(result.getString("playerName"));
+        player.setPosition(result.getString("position"));
+        player.setNationality(NationRepository.findById(result.getInt("nationId")));
+        player.setBirthday(result.getDate("birthday"));
+        player.setTeam(TeamRepository.findById(result.getInt("teamId")));
+        player.setLeague(LeagueRepository.findById(result.getInt("leagueId")));
+
+        players.add(player);
+    }
+    static void objectToTable(TableView<Player> tablePlayer, TableColumn<Player, Integer> colIdPlayer,
+                              TableColumn<Player, String> colNamePlayer, TableColumn<Player, Date> colPlayerBirthday,
+                              TableColumn<Player, Nation> colPlayerNation, TableColumn<Player, String> colPlayerPos,
+                              TableColumn<Player, Team> colPlayerTeam,TableColumn<Player, League> colPlayerLeague ,ObservableList<Player> players){
         tablePlayer.setItems(players);
         colIdPlayer.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNamePlayer.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -229,6 +208,5 @@ public class PlayerRepository {
         colPlayerPos.setCellValueFactory(new PropertyValueFactory<>("position"));
         colPlayerTeam.setCellValueFactory(new PropertyValueFactory<>("team"));
         colPlayerLeague.setCellValueFactory(new PropertyValueFactory<>("league"));
-
     }
 }

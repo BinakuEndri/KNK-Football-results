@@ -97,15 +97,16 @@ public class ManagePlayerController implements Initializable {
                 PlayerRepository.insert(player,squad,team);
                 ImagesToResources.imageToResourcesTeam(league.getName(),playerName,imageName,imagePath);
                 CostumedAlerts.costumeAlert(Alert.AlertType.CONFIRMATION,
-                        "ManageTeams",
-                        "Manage Teams",
-                        "The Team has been added successfully ");
+                        "ManagePlayers",
+                        "Manage Player",
+                        "The Player has been added successfully ");
+                fetchData();
 
             } catch (Exception e) {
                 CostumedAlerts.costumeAlert(Alert.AlertType.CONFIRMATION,
-                        "ManageTeams",
-                        "Manage Teams",
-                        "The Team failed to be added");
+                        "ManagePlayer",
+                        "Manage Player",
+                        "The Player failed to be added");
                 throw new RuntimeException(e);
             }
     }
@@ -146,7 +147,7 @@ public class ManagePlayerController implements Initializable {
     @FXML
     void displayFilteredData(ActionEvent event) {
         if(choseLeagueToTable.getValue() == null){
-            System.out.println("Select a league");
+            CostumedAlerts.costumeAlert(Alert.AlertType.WARNING,"Manage Player","Manage Player", "Select a league ");
         }else {
 
             League league = choseLeagueToTable.getValue();

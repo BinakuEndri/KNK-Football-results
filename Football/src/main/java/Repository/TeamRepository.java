@@ -35,23 +35,30 @@ public class TeamRepository {
         Standings standing = new Standings(1,team,league,0,0,0,0,0,0,0);
         StandingsRepository.insertByTeam(standing);
     }
-    public static int findId(Team team) throws SQLException {
-        String sql = "Select id from team where name=? and stadium =? and year= ? and logo=?";
-        Connection connection = ConnectionUtil.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1,team.getName());
-        statement.setString(2,team.getStadium());
-        statement.setString(3,team.getYear());
-        statement.setString(4,team.getLogo());
-        ResultSet result = statement.executeQuery();
-        if(result.next()){
-            int id  = result.getInt("id");
-            return id;
-        }
-        else {
-            return -1;
+    public static void Delete(TableView<Team> teamTable) {
+        int index = teamTable.getSelectionModel().getSelectedIndex();
+        int id = teamTable.getItems().get(index).getId();
+        League league = teamTable.getItems().get(index).getLeague();
+        try {
+            Team team = findById(id);
+            String sql = "Delete From team where id = ?";
+            Connection connection = ConnectionUtil.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1,id);
+            statement.executeUpdate();
+            String path = ImagesToResources.getImagePath()+"\\"+league+"\\"+team.getName() +"\\"+team.getLogo();
+            File file = new File(path);
+            if(file.delete()){
+                System.out.println("File deleted successfuly");
+            }
+            CostumedAlerts.costumeAlert(Alert.AlertType.INFORMATION,"Manage Teams","Manage Teams","The team has been deleted!");
+        } catch (SQLException e) {
+            CostumedAlerts.costumeAlert(Alert.AlertType.ERROR,"Manage Teams","Manage Teams","The team failed to be deleted!");
+
+            throw new RuntimeException(e);
         }
     }
+
 
     public static void fetchToTable(TableView<Team> table,
                                     TableColumn<Team, Integer> colId, TableColumn<Team,String > colName,
@@ -67,21 +74,9 @@ public class TeamRepository {
         ResultSet result  = statement.executeQuery();
 
         while (result.next()){
-            Team team = new Team(1,null,null, null,null);
-            team.setId(result.getInt("id"));
-            team.setName(result.getString("name"));
-            team.setYear(result.getString("year"));
-            team.setStadium(result.getString("stadium"));
-            team.setLeague(LeagueRepository.findById(result.getInt("leagueId")));
-
-            teams.add(team);
+            dataToList(teams,result);
         }
-        table.setItems(teams);
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colStadium.setCellValueFactory(new PropertyValueFactory<>("stadium"));
-        colYear.setCellValueFactory(new PropertyValueFactory<>("year"));
-        colLeague.setCellValueFactory(new PropertyValueFactory<>("league"));
+        objectToTable(table,colId,colName,colStadium,colYear,colLeague,teams);
 
     }
     public static void fetchToTableByLeague(TableView<Team> table,
@@ -99,22 +94,30 @@ public class TeamRepository {
         ResultSet result  = statement.executeQuery();
 
         while (result.next()){
-            Team team = new Team(1,null,null, null,null);
-            team.setId(result.getInt("id"));
-            team.setName(result.getString("name"));
-            team.setYear(result.getString("year"));
-            team.setStadium(result.getString("stadium"));
-            team.setLeague(LeagueRepository.findById(result.getInt("leagueId")));
-
-            teams.add(team);
+            dataToList(teams,result);
         }
+        objectToTable(table,colId,colName,colStadium,colYear,colLeague,teams);
+
+    }
+    static void dataToList(ObservableList<Team> teams , ResultSet result) throws SQLException {
+        Team team = new Team(1,null,null, null,null);
+        team.setId(result.getInt("id"));
+        team.setName(result.getString("name"));
+        team.setYear(result.getString("year"));
+        team.setStadium(result.getString("stadium"));
+        team.setLeague(LeagueRepository.findById(result.getInt("leagueId")));
+
+        teams.add(team);
+    }
+    static void objectToTable(TableView<Team> table,
+                              TableColumn<Team, Integer> colId, TableColumn<Team,String > colName, TableColumn<Team,String> colStadium,
+                              TableColumn<Team, String> colYear, TableColumn<Team, League> colLeague, ObservableList<Team> teams){
         table.setItems(teams);
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colStadium.setCellValueFactory(new PropertyValueFactory<>("stadium"));
         colYear.setCellValueFactory(new PropertyValueFactory<>("year"));
         colLeague.setCellValueFactory(new PropertyValueFactory<>("league"));
-
     }
 
     public static Team findById(int teamId) throws SQLException {
@@ -132,6 +135,23 @@ public class TeamRepository {
             return team;
         }
         return null;
+    }
+    public static int findId(Team team) throws SQLException {
+        String sql = "Select id from team where name=? and stadium =? and year= ? and logo=?";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1,team.getName());
+        statement.setString(2,team.getStadium());
+        statement.setString(3,team.getYear());
+        statement.setString(4,team.getLogo());
+        ResultSet result = statement.executeQuery();
+        if(result.next()){
+            int id  = result.getInt("id");
+            return id;
+        }
+        else {
+            return -1;
+        }
     }
 
     public static ObservableList<Team> getAllTeamsFromLeague(League league) throws SQLException {
@@ -170,27 +190,5 @@ public class TeamRepository {
         }
     }
 
-    public static void Delete(TableView<Team> teamTable) {
-        int index = teamTable.getSelectionModel().getSelectedIndex();
-        int id = teamTable.getItems().get(index).getId();
-        League league = teamTable.getItems().get(index).getLeague();
-        try {
-            Team team = findById(id);
-            String sql = "Delete From team where id = ?";
-            Connection connection = ConnectionUtil.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1,id);
-            statement.executeUpdate();
-            String path = ImagesToResources.getImagePath()+"\\"+league+"\\"+team.getName() +"\\"+team.getLogo();
-            File file = new File(path);
-            if(file.delete()){
-                System.out.println("File deleted successfuly");
-            }
-            CostumedAlerts.costumeAlert(Alert.AlertType.INFORMATION,"Manage Teams","Manage Teams","The team has been deleted!");
-        } catch (SQLException e) {
-            CostumedAlerts.costumeAlert(Alert.AlertType.ERROR,"Manage Teams","Manage Teams","The team failed to be deleted!");
 
-            throw new RuntimeException(e);
-        }
-    }
 }

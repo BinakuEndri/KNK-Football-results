@@ -1,35 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controller.AdminNavbarCotroller">
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminNavbarController">
     <children>
         <VBox layoutY="113.0" prefHeight="580.0" prefWidth="302.0" spacing="10.0">
             <children>
                 <Label prefHeight="17.0" prefWidth="292.0" stylesheets="@../css/button.css" text="Matches" />
-                <Button fx:id="btnPremierLeague" mnemonicParsing="false" prefHeight="43.0" prefWidth="299.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Add Match">
-                    <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="leagueimage">
-                            <image>
-                                <Image url="@../images/Admin/soccer-ball-icon-png-3.jpg" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font name="Verdana Bold" size="15.0" />
-                    </font>
-                </Button>
-                <Button fx:id="btnPremierLeague1" mnemonicParsing="false" prefHeight="43.0" prefWidth="299.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage Matches">
+                <Button fx:id="btnPremierLeague1" mnemonicParsing="false" onAction="#changeSceneMatches" prefHeight="43.0" prefWidth="299.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage Matches">
                     <graphic>
                         <ImageView fitHeight="39.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" styleClass="leagueimage">
                             <image>
@@ -42,16 +27,7 @@
                     </font>
                 </Button>
                 <Label stylesheets="@../css/button.css" text="Players" />
-                <Button fx:id="btnLaLiga" mnemonicParsing="false" prefHeight="44.0" prefWidth="290.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Add Player">
-                    <graphic>
-                        <ImageView fitHeight="36.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/Admin/soccer_player_480px.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button fx:id="btnLaLiga1" mnemonicParsing="false" prefHeight="44.0" prefWidth="290.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage Players">
+                <Button fx:id="btnLaLiga1" mnemonicParsing="false" onAction="#changeScenePlayers" prefHeight="44.0" prefWidth="290.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage Players">
                     <graphic>
                         <ImageView fitHeight="36.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -61,12 +37,7 @@
                     </graphic>
                 </Button>
                 <Label prefHeight="17.0" prefWidth="280.0" stylesheets="@../css/button.css" text="Clubs" />
-                <Button fx:id="btnSuperLiga" mnemonicParsing="false" prefHeight="43.0" prefWidth="292.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Add Club">
-                    <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
-                    </graphic>
-                </Button>
-                <Button fx:id="btnLaLiga11" mnemonicParsing="false" prefHeight="44.0" prefWidth="290.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage Club">
+                <Button fx:id="btnLaLiga11" mnemonicParsing="false" onAction="#changeSceneClub" prefHeight="44.0" prefWidth="290.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage Club">
                     <graphic>
                         <ImageView fitHeight="38.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -76,15 +47,7 @@
                     </graphic>
                 </Button>
                 <Label prefHeight="17.0" prefWidth="275.0" stylesheets="@../css/button.css" text="Leagues" />
-                <Button fx:id="btnSeriaA" mnemonicParsing="false" prefHeight="40.0" prefWidth="272.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Add League">
-                    <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/Admin/trophy_480px.png" />
-                            </image></ImageView>
-                    </graphic>
-                </Button>
-                <Button fx:id="btnLaLiga12" mnemonicParsing="false" prefHeight="41.0" prefWidth="272.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage League">
+                <Button fx:id="btnLaLiga12" mnemonicParsing="false" onAction="#changeSceneLeague" prefHeight="41.0" prefWidth="272.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage League">
                     <graphic>
                         <ImageView fitHeight="36.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -93,6 +56,16 @@
                         </ImageView>
                     </graphic>
                 </Button>
+            <Label prefHeight="17.0" prefWidth="275.0" stylesheets="@../css/button.css" text="Coach" />
+            <Button fx:id="btnLaLiga121" mnemonicParsing="false" onAction="#changeSceneCoach" prefHeight="41.0" prefWidth="272.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Manage Coach">
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Admin/coach_480px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
             <padding>
                 <Insets left="20.0" right="10.0" top="10.0" />
