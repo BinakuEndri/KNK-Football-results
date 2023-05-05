@@ -41,7 +41,7 @@ public class AdminNavbarController{
     @FXML
     void changeSceneMatches(ActionEvent event) {
         try {
-            changeScene("manageTeam.fxml",event);
+            changeScene("addMatch.fxml",event);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

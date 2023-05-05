@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddMatchController">
+    <children>
+        <BorderPane prefHeight="700.0" style="-fx-background-color: #CED4DA;">
+            <left>
+                <VBox prefHeight="0.0" prefWidth="300.0" style="-fx-background-color: #343A40; -fx-background-radius: 0 50 0 0;" BorderPane.alignment="CENTER">
+                    <children>
+                        <fx:include source="adminNavbar.fxml" />
+                    </children>
+                </VBox>
+            </left>
+            <center>
+                <BorderPane prefHeight="200.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+               <top>
+                        <AnchorPane prefHeight="700.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <GridPane layoutX="91.0" layoutY="35.0" prefHeight="108.0" prefWidth="742.0">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="285.0" text="Select League" GridPane.columnIndex="1" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="285.0" text="Select Team" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="285.0" text="Select Team" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="choseHomeTeam" prefHeight="55.0" prefWidth="248.0" GridPane.rowIndex="3" />
+                              <ComboBox fx:id="choseLeagueMatch" prefHeight="99.0" prefWidth="315.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="choseAwayTeam" prefHeight="263.0" prefWidth="571.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <DatePicker fx:id="choseDate" prefHeight="25.0" prefWidth="199.0" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="285.0" text="Chose Date" />
+                           </children>
+                        </GridPane>
+                        <GridPane layoutX="95.0" layoutY="154.0" prefHeight="62.0" prefWidth="736.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="76.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="200.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="83.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="18.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="334.0" minWidth="10.0" prefWidth="77.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="207.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="82.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="65.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label fx:id="txtHomeTeamName" alignment="CENTER" prefHeight="52.0" prefWidth="203.0" text="Team Name" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="txtAwayTeamName" alignment="CENTER" prefHeight="52.0" prefWidth="219.0" text="Team Name" GridPane.columnIndex="5">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="51.0" prefWidth="47.0" text=":" GridPane.columnIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <VBox prefHeight="75.0" prefWidth="73.0">
+                                 <children>
+                                    <ImageView fx:id="imageHomeTeam" fitHeight="75.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="75.0" prefWidth="73.0" GridPane.columnIndex="6">
+                                 <children>
+                                    <ImageView fx:id="imageAwayTeam" fitHeight="63.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </VBox>
+                              <TextField fx:id="fieldAwayTeamGoal" alignment="CENTER" prefHeight="113.0" prefWidth="76.0" promptText="-" GridPane.columnIndex="4">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="fieldHomeTeamGoal" alignment="CENTER" prefHeight="113.0" prefWidth="76.0" promptText="-" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                        <ScrollPane hbarPolicy="NEVER" layoutX="93.0" layoutY="244.0" prefHeight="320.0" prefWidth="739.0">
+                           <content>
+                              <VBox prefHeight="240.0" prefWidth="737.0">
+                                 <children>
+                                    <GridPane prefHeight="25.0" prefWidth="737.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <VBox fx:id="vbox1" prefHeight="0.0" prefWidth="369.0" />
+                                          <VBox fx:id="vbox2" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane prefHeight="240.0" prefWidth="711.0">
+                                      <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="583.0" minWidth="10.0" prefWidth="530.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="552.0" text="Possession" GridPane.columnIndex="1">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="552.0" text="Fouls" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="552.0" text="Corners" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="552.0" text="Shots" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="552.0" text="Yellow Cards" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="552.0" text="Red Cards" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                        <Button layoutX="95.0" layoutY="620.0" mnemonicParsing="false" onAction="#addMatch" prefHeight="53.0" prefWidth="175.0" text="Add Match" />
+                        <Button layoutX="323.0" layoutY="620.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="175.0" text="Clear Fields" />
+                     </children>
+                        </AnchorPane>
+               </top></BorderPane>
+            </center>
+        </BorderPane>
+    </children>
+
+</AnchorPane>

@@ -177,11 +177,47 @@ public class TeamRepository {
         }
         return teams;
     }
+    public static ObservableList<Team> getAllTeamsFromLeagueExcept(League league,Team team) throws SQLException {
+        ObservableList teams = FXCollections.observableArrayList();
+        String sql = "Select t.id , t.name, t.stadium, t.year, t.logo  from team t " +
+                "inner join league_teams lt on lt.team_id = t.id " +
+                "inner join league l on l.id = lt.league_id " +
+                "where l.id = ? and t.id != ?";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,league.getId());
+        statement.setInt(2,team.getId());
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()){
+            Team theTeam = new Team(
+                    result.getInt("id"),
+                    result.getString("name"),
+                    result.getString("stadium"),
+                    result.getString("year"),
+                    result.getString("logo")
+            );
+            teams.add(theTeam);
+        }
+        return teams;
+    }
 
     public static ComboBox<Team> setValues(ComboBox<Team> teams, League league) {
         try {
             for (Team team : getAllTeamsFromLeague(league)) {
                 teams.getItems().add(team);
+            }
+            return teams;
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static ComboBox<Team> setValuesAwayTeam(ComboBox<Team> teams, League league,Team team) {
+        try {
+            for (Team theTeam : getAllTeamsFromLeagueExcept(league,team)) {
+                teams.getItems().add(theTeam);
             }
             return teams;
         }

@@ -3,15 +3,17 @@ package Models;
 import java.util.Date;
 
 public class Goal {
+    private int id;
     private Match game;
     private Team team;
     private Player scored;
     private Player assisted;
-    private Date minute;
+    private String minute;
     private Boolean owngoal;
     private Boolean penalty;
 
-    public Goal(Match game, Team team, Player scored, Player assisted, Date minute, Boolean owngoal, Boolean penalty) {
+    public Goal(int id, Match game, Team team, Player scored, Player assisted, String minute, Boolean owngoal, Boolean penalty) {
+        this.id = id;
         this.game = game;
         this.team = team;
         this.scored = scored;
@@ -53,11 +55,11 @@ public class Goal {
         this.assisted = assisted;
     }
 
-    public Date getMinute() {
+    public String getMinute() {
         return minute;
     }
 
-    public void setMinute(Date minute) {
+    public void setMinute(String minute) {
         this.minute = minute;
     }
 

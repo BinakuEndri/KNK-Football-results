@@ -7,6 +7,7 @@ import Services.ImagesToResources;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -209,4 +210,44 @@ public class PlayerRepository {
         colPlayerTeam.setCellValueFactory(new PropertyValueFactory<>("team"));
         colPlayerLeague.setCellValueFactory(new PropertyValueFactory<>("league"));
     }
+
+    static ObservableList<Player> getAllPlayerByTeam(Team team) throws SQLException{
+        ObservableList players = FXCollections.observableArrayList();
+        String sql = "Select * from player p " +
+                "inner join squad_players sp on sp.player_id = p.id " +
+                "inner join squad s on s.id = sp.squad_id " +
+                "where s.team_id = ? ";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,team.getId());
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()){
+            Player player = new Player(
+                    result.getInt("id"),
+                    result.getString("name"),
+                    result.getString("position"),
+                    result.getDate("birthday"),
+                    NationRepository.findById(result.getInt("nationality")),
+                    result.getString("image")
+
+            );
+            players.add(player);
+        }
+        return players;
+    }
+
+
+    public static ComboBox<Player> setValuesByTeam(ComboBox<Player> choseScorer, Team team) {
+        try {
+            for (Player player : getAllPlayerByTeam(team)) {
+                choseScorer.getItems().add(player);
+            }
+            return choseScorer;
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
 }
