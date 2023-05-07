@@ -1,6 +1,6 @@
 package Models;
 
-public class Match_Statistics {
+public class MatchStatistics {
     private int id;
     private Match match_id;
     private int home_team_goals;
@@ -18,7 +18,7 @@ public class Match_Statistics {
     private int red_cards_home;
     private int red_cards_away;
 
-    public Match_Statistics(int id, Match match_id, int home_team_goals, int away_team_goals, double possession_home, double possession_away, int shots_home, int shots_away, int corners_home, int corners_away, int fouls_home, int fouls_away, int yellow_cards_home, int yellow_cards_away, int red_cards_home, int red_cards_away) {
+    public MatchStatistics(int id, Match match_id, int home_team_goals, int away_team_goals, double possession_home, double possession_away, int shots_home, int shots_away, int corners_home, int corners_away, int fouls_home, int fouls_away, int yellow_cards_home, int yellow_cards_away, int red_cards_home, int red_cards_away) {
         this.id = id;
         this.match_id = match_id;
         this.home_team_goals = home_team_goals;

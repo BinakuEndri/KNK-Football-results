@@ -5,6 +5,7 @@ import Repository.GoalRepository;
 import Repository.LeagueRepository;
 import Repository.MatchRepository;
 import Repository.TeamRepository;
+import Services.CostumedAlerts;
 import Services.ImagesToResources;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -61,6 +62,42 @@ public class AddMatchController implements Initializable {
     private Label txtHomeTeamName;
     @FXML
     private DatePicker choseDate;
+
+    @FXML
+    private TextField txtAwayCorners;
+
+    @FXML
+    private TextField txtAwayFouls;
+
+    @FXML
+    private TextField txtAwayPossesion;
+
+    @FXML
+    private TextField txtAwayRedCard;
+
+    @FXML
+    private TextField txtAwayShots;
+
+    @FXML
+    private TextField txtAwayYellowCard;
+
+    @FXML
+    private TextField txtHomeCorner;
+
+    @FXML
+    private TextField txtHomeFouls;
+
+    @FXML
+    private TextField txtHomePossesion;
+
+    @FXML
+    private TextField txtHomeRedCard;
+
+    @FXML
+    private TextField txtHomeShots;
+
+    @FXML
+    private TextField txtHomeYellowCard;
 
     private String imagePath = ImagesToResources.getImagePath();
 
@@ -121,7 +158,7 @@ public class AddMatchController implements Initializable {
                         fxmlLoader.setLocation(getClass().getResource("Goal.fxml"));
                         VBox vbox = fxmlLoader.load();
                         GoalController goalController = fxmlLoader.getController();
-
+                        vbox.getProperties().put("fxmlLoader",fxmlLoader);
                         vbox1.getChildren().add(vbox);
                         RadioButton ownGoal =  goalController.getOwnGoal();
 
@@ -149,11 +186,6 @@ public class AddMatchController implements Initializable {
     }
      @FXML
      void addMatch(ActionEvent actionEvent){
-        List<Goal> homeGoals = getGoals(vbox1,choseHomeTeam);
-        List<Goal> awayGoals = getGoals(vbox1,choseHomeTeam);
-        // Store the goals in the database
-        addGoals(homeGoals);
-        addGoals(awayGoals);
 
         League league = choseLeagueMatch.getValue();
         Team homeTeam = choseHomeTeam.getValue();
@@ -162,45 +194,62 @@ public class AddMatchController implements Initializable {
         Match match = new Match(-1,homeTeam,awayTeam,matchDate);
         int goalsHome = Integer.parseInt(fieldHomeTeamGoal.getText());
         int goalsAway = Integer.parseInt(fieldAwayTeamGoal.getText());
-        double possessionHome = Double.parseDouble(fieldAwayTeamGoal.getText());
-        double possessionAway = Double.parseDouble(fieldAwayTeamGoal.getText());
-        int shotsHome = Integer.parseInt(fieldAwayTeamGoal.getText());
-        int shotsAway = Integer.parseInt(fieldAwayTeamGoal.getText());
-         int cornersHome = Integer.parseInt(fieldAwayTeamGoal.getText());
-         int cornersAway = Integer.parseInt(fieldAwayTeamGoal.getText());
-         int yellowHome = Integer.parseInt(fieldAwayTeamGoal.getText());
-         int yellowAway = Integer.parseInt(fieldAwayTeamGoal.getText());
-         int redHome = Integer.parseInt(fieldAwayTeamGoal.getText());
-         int redAway = Integer.parseInt(fieldAwayTeamGoal.getText());
-         int foulsHome = Integer.parseInt(fieldAwayTeamGoal.getText());
-         int foulsAway = Integer.parseInt(fieldAwayTeamGoal.getText());
+        double possessionHome = Double.parseDouble(txtHomePossesion.getText());
+        double possessionAway = Double.parseDouble(txtAwayPossesion.getText());
+        int shotsHome = Integer.parseInt(txtHomeShots.getText());
+        int shotsAway = Integer.parseInt(txtAwayShots.getText());
+        int cornersHome = Integer.parseInt(txtHomeCorner.getText());
+        int cornersAway = Integer.parseInt(txtAwayCorners.getText());
+        int yellowHome = Integer.parseInt(txtHomeYellowCard.getText());
+        int yellowAway = Integer.parseInt(txtAwayYellowCard.getText());
+        int redHome = Integer.parseInt(txtHomeRedCard.getText());
+        int redAway = Integer.parseInt(txtAwayRedCard.getText());
+        int foulsHome = Integer.parseInt(txtHomeFouls.getText());
+        int foulsAway = Integer.parseInt(txtAwayFouls.getText());
 
-        Match_Statistics matchStatistics = new Match_Statistics(-1,null,goalsHome,goalsAway,
+        MatchStatistics matchStatistics = new MatchStatistics(-1,null,goalsHome,goalsAway,
                 possessionHome,possessionAway,shotsHome,shotsAway,
                 cornersHome,cornersAway,foulsHome,foulsAway,
                 yellowHome,yellowAway,redHome,redAway);
 
         try {
             MatchRepository.insert(match,league,matchStatistics);
+            match.setId(MatchRepository.findIdByData(match));
+            List<Goal> homeGoals = getGoals(vbox1,choseHomeTeam,match);
+            List<Goal> awayGoals = getGoals(vbox2,choseAwayTeam,match);
+            // Store the goals in the database
+            addGoal(homeGoals);
+            addGoal(awayGoals);
+            CostumedAlerts.costumeAlert(Alert.AlertType.CONFIRMATION,
+                    "ManagePlayers",
+                    "Manage Player",
+                    "The Player has been added successfully ");
+
         }catch (SQLException e){
+            CostumedAlerts.costumeAlert(Alert.AlertType.CONFIRMATION,
+                    "ManagePlayer",
+                    "Manage Player",
+                    "The Player failed to be added");
+            throw new RuntimeException(e);
 
         }
 
     }
 
-    static List<Goal> getGoals(VBox vbox,ComboBox<Team> choseTeam){
+    static List<Goal> getGoals(VBox vbox,ComboBox<Team> choseTeam, Match match){
         List<Goal> goals = new ArrayList<>();
         for (Node node : vbox.getChildren()) {
             if (node instanceof VBox) {
-                VBox goalBox = (VBox) node;
-                GoalController goalController = (GoalController) goalBox.getProperties().get("controller");
+                FXMLLoader fxmlLoader = (FXMLLoader) node.getProperties().get("fxmlLoader");
+                GoalController goalController = fxmlLoader.getController();
                 Goal goal = goalController.getGoal(choseTeam);
+                goal.setGame(match);
                 goals.add(goal);
             }
         }
         return goals;
     }
-    static void addGoals(List<Goal> goals){
+    static void addGoal(List<Goal> goals){
         for (Goal goal : goals) {
             try {
                 GoalRepository.insert(goal);

@@ -166,62 +166,62 @@
                                                 <Font size="30.0" />
                                              </font>
                                           </Label>
-                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="4">
+                                          <TextField fx:id="txtHomeYellowCard" alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="4">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </TextField>
-                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="1">
+                                          <TextField fx:id="txtHomeShots" alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="1">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </TextField>
-                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="3">
+                                          <TextField fx:id="txtHomeFouls" alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="3">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </TextField>
-                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="2">
+                                          <TextField fx:id="txtHomeCorner" alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="2">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </TextField>
-                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                          <TextField fx:id="txtAwayRedCard" alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </TextField>
-                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="5">
+                                          <TextField fx:id="txtHomeRedCard" alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.rowIndex="5">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </TextField>
-                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                          <TextField fx:id="txtAwayYellowCard" alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </TextField>
-                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                          <TextField fx:id="txtAwayFouls" alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </TextField>
-                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                          <TextField fx:id="txtAwayCorners" alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </TextField>
-                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                          <TextField fx:id="txtAwayShots" alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </TextField>
-                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2">
+                                          <TextField fx:id="txtAwayPossesion" alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-" GridPane.columnIndex="2">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </TextField>
-                                          <TextField alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-">
+                                          <TextField fx:id="txtHomePossesion" alignment="CENTER" prefHeight="77.0" prefWidth="95.0" promptText="-">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>

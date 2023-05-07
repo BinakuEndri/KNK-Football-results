@@ -48,7 +48,7 @@ public class GoalController {
     public Goal getGoal(ComboBox<Team> team){
         Goal goal = new Goal(1,null,null,null,null,null,null,null);
         goal.setMinute(minute.getText());
-        goal.setAssisted(choseScorer.getValue());
+        goal.setScored(choseScorer.getValue());
         goal.setAssisted(choseAssister.getValue());
         goal.setOwngoal(ownGoal.isSelected());
         goal.setPenalty(Penalty.isSelected());
