@@ -1,6 +1,7 @@
 package Repository;
 
 import Models.League;
+import Models.Squad;
 import Services.ConnectionUtil;
 import Services.CostumedAlerts;
 import Services.ImagesToResources;
@@ -149,5 +150,19 @@ public  class LeagueRepository {
         catch (SQLException e){
             throw new RuntimeException(e);
         }
+    }
+
+    public static League findId(League league) throws SQLException {
+        String sql = "Select id from league where name= ?";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1,league.getName());
+
+        ResultSet result = statement.executeQuery();
+        while (result.next()){
+              league = new League(result.getInt("id"),league.getName(),league.getLeague_logo());
+            return league;
+        }
+        return null;
     }
 }

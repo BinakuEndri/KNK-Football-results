@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="763.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TeamStandingController">
+    <children>
+        <ImageView fx:id="posImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="teamImageStanding" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="teamNameStanding" prefHeight="30.0" prefWidth="330.0" text="TeamName" textFill="WHITE">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="gamesPlayed" alignment="CENTER" prefHeight="30.0" prefWidth="40.0" text="P" textFill="WHITE">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="gamesWonStanding" alignment="CENTER" prefHeight="30.0" prefWidth="40.0" text="W" textFill="WHITE">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="gamesDrawnStanding" alignment="CENTER" prefHeight="30.0" prefWidth="40.0" text="D" textFill="WHITE">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="gameLostStanding" alignment="CENTER" prefHeight="30.0" prefWidth="40.0" text="L" textFill="WHITE">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="70.0">
+            <children>
+                <Label fx:id="GoalsForStanding" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="G" textFill="WHITE">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="5.0" text=":" textFill="WHITE">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="goalsAgainstStanding" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="G" textFill="WHITE">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <Label fx:id="teamPointStanding" alignment="CENTER" prefHeight="30.0" prefWidth="40.0" text="Pts" textFill="WHITE">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+    </children>
+
+
+</HBox>

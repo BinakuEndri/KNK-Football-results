@@ -7,6 +7,7 @@ public class LeagueTeams {
     public LeagueTeams(League league_id, Team team_id) {
         this.league_id = league_id;
         this.team_id = team_id;
+
     }
 
     public League getLeague_id() {
@@ -24,4 +25,5 @@ public class LeagueTeams {
     public void setTeam_id(Team team_id) {
         this.team_id = team_id;
     }
+
 }

@@ -187,6 +187,23 @@ public class AddMatchController implements Initializable {
      @FXML
      void addMatch(ActionEvent actionEvent){
 
+         if(choseLeagueMatch.getValue() == null || choseHomeTeam.getValue() == null ||
+                 choseAwayTeam.getValue() == null || choseDate.getValue() == null ||
+                 fieldHomeTeamGoal.getText().isEmpty() || fieldAwayTeamGoal.getText().isEmpty() ||
+                 txtHomePossesion.getText().isEmpty() || txtAwayPossesion.getText().isEmpty() ||
+                 txtHomeShots.getText().isEmpty() || txtAwayShots.getText().isEmpty() ||
+                 txtHomeCorner.getText().isEmpty() || txtAwayCorners.getText().isEmpty() ||
+                 txtHomeYellowCard.getText().isEmpty() || txtAwayYellowCard.getText().isEmpty() ||
+                 txtHomeRedCard.getText().isEmpty() || txtAwayRedCard.getText().isEmpty() ||
+                 txtHomeFouls.getText().isEmpty() || txtAwayFouls.getText().isEmpty()){
+
+             CostumedAlerts.costumeAlert(Alert.AlertType.WARNING,
+                     "Add Match",
+                     "Missing Fields",
+                     "Please fill out all required fields before submitting the form.");
+             return;
+         }
+
         League league = choseLeagueMatch.getValue();
         Team homeTeam = choseHomeTeam.getValue();
         Team awayTeam = choseAwayTeam.getValue();

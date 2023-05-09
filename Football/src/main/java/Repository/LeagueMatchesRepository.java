@@ -13,8 +13,8 @@ public class LeagueMatchesRepository {
                 "Values (?,?)";
         Connection connection = ConnectionUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1,leagueMatches.getMatch_id().getId());
-        statement.setInt(2,leagueMatches.getLeague_id().getId());
+        statement.setInt(1,leagueMatches.getLeague_id().getId());
+        statement.setInt(2,leagueMatches.getMatch_id().getId());
         statement.executeUpdate();
     }
 }

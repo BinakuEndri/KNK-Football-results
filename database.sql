@@ -515,3 +515,164 @@ Alter table matches
 	Modify column match_date Date;
 Alter table goal 
 	modify column minute varchar(10);
+    
+    
+Delimiter $$
+CREATE TRIGGER update_standings AFTER INSERT ON Match_Statistics
+FOR EACH ROW
+BEGIN
+  DECLARE home_team_id INT;
+  DECLARE away_team_id INT;
+  DECLARE home_team_goals INT;
+  DECLARE away_team_goals INT;
+
+  SELECT m.home_team_id, m.away_team_id 
+  INTO home_team_id, away_team_id
+  FROM Matches m
+  WHERE m.id = NEW.match_id;
+  
+  Set home_team_goals = new.home_team_goals;
+  Set away_team_goals = new.away_team_goals;
+
+  IF home_team_goals > away_team_goals THEN
+    UPDATE Standings
+    SET matches_played = matches_played + 1,
+        wins = wins + 1,
+        goals_for = goals_for + home_team_goals,
+        goals_against = goals_against + away_team_goals,
+        points = points + 3
+    WHERE team_id = home_team_id ;
+
+    UPDATE Standings
+    SET matches_played = matches_played + 1,
+        losses = losses + 1,
+        goals_for = goals_for + away_team_goals,
+        goals_against = goals_against + home_team_goals
+    WHERE team_id = away_team_id ;
+
+  ELSEIF home_team_goals < away_team_goals THEN
+    UPDATE Standings
+    SET matches_played = matches_played + 1,
+        losses = losses + 1,
+        goals_for = goals_for + home_team_goals,
+        goals_against = goals_against + away_team_goals
+    WHERE team_id = home_team_id ;
+
+    UPDATE Standings
+    SET matches_played = matches_played + 1,
+        wins = wins + 1,
+        goals_for = goals_for + away_team_goals,
+        goals_against = goals_against + home_team_goals,
+        points = points + 3
+    WHERE team_id = away_team_id;
+
+  ELSE
+    UPDATE Standings
+    SET matches_played = matches_played + 1,
+        draws = draws + 1,
+        goals_for = goals_for + home_team_goals,
+        goals_against = goals_against + away_team_goals,
+        points = points + 1
+    WHERE team_id = home_team_id;
+
+    UPDATE Standings
+    SET matches_played = matches_played + 1,
+        draws = draws + 1,
+        goals_for = goals_for + away_team_goals,
+        goals_against = goals_against + home_team_goals,
+        points = points + 1
+    WHERE team_id = away_team_id;
+  END IF;
+END $$
+Delimiter ;
+
+UPDATE Standings
+SET matches_played = 0,
+    wins = 0,
+    draws = 0,
+    losses = 0,
+    goals_for = 0,
+    goals_against = 0,
+    points = 0
+Where id =2 or id = 3 or id=4;
+
+INSERT INTO match_statistics (match_id, home_team_goals, away_team_goals, possession_home, possession_away, shots_home, shots_away, corners_home, corners_away, fouls_home, fouls_away, yellow_cards_home, yellow_cards_away, red_cards_home, red_cards_away)
+VALUES (8, 2, 1, 0.6, 0.4, 10, 5, 8, 3, 12, 7, 2, 3, 0, 1);
+
+Drop Trigger update_standings_on_delete;
+
+Alter table league_matches 
+Drop foreign key league_matches_ibfk_2,
+add  FOREIGN KEY (match_id) REFERENCES Matches(id) on delete Cascade;
+
+Delimiter $$
+CREATE TRIGGER update_standings_on_delete AFTER DELETE ON Matches
+FOR EACH ROW
+BEGIN
+  DECLARE home_team_id INT;
+  DECLARE away_team_id INT;
+  DECLARE home_team_goals INT;
+  DECLARE away_team_goals INT;
+
+  SELECT m.home_team_goals, m.away_team_goals
+  INTO home_team_goals, away_team_goals
+  FROM Match_Statistics m
+  where m.match_id = old.id;
+  
+  Set home_team_id = old.home_team_id;
+  Set away_team_id = old.away_team_id;
+
+  IF home_team_goals > away_team_goals THEN
+    UPDATE Standings
+    SET matches_played = matches_played - 1,
+        wins = wins - 1,
+        goals_for = goals_for - home_team_goals,
+        goals_against = goals_against - away_team_goals,
+        points = points - 3
+    WHERE team_id = home_team_id ;
+
+    UPDATE Standings
+    SET matches_played = matches_played - 1,
+        losses = losses - 1,
+        goals_for = goals_for - away_team_goals,
+        goals_against = goals_against - home_team_goals
+    WHERE team_id = away_team_id ;
+
+  ELSEIF home_team_goals < away_team_goals THEN
+    UPDATE Standings
+    SET matches_played = matches_played - 1,
+        losses = losses - 1,
+        goals_for = goals_for - home_team_goals,
+        goals_against = goals_against - away_team_goals
+    WHERE team_id = home_team_id;
+
+    UPDATE Standings
+    SET matches_played = matches_played - 1,
+        wins = wins - 1,
+        goals_for = goals_for - away_team_goals,
+        goals_against = goals_against - home_team_goals,
+        points = points - 3
+    WHERE team_id = away_team_id ;
+
+  ELSE
+    UPDATE Standings
+    SET matches_played = matches_played - 1,
+        draws = draws - 1,
+        goals_for = goals_for - home_team_goals,
+        goals_against = goals_against - away_team_goals,
+        points = points - 1
+    WHERE team_id = home_team_id ;
+
+    UPDATE Standings
+    SET matches_played = matches_played - 1,
+        draws = draws - 1,
+        goals_for = goals_for - away_team_goals,
+        goals_against = goals_against - home_team_goals,
+        points = points - 1
+    WHERE team_id = away_team_id;
+  END IF;
+END $$
+Delimiter ;
+
+delete from matches;
+

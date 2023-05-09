@@ -1,10 +1,14 @@
 package Repository;
 
+import Models.League;
 import Models.Standings;
 import Services.ConnectionUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class StandingsRepository {
@@ -25,5 +29,29 @@ public class StandingsRepository {
 
         statement.executeUpdate();
 
+    }
+    public static ObservableList<Standings> getAllStandings(League league) throws SQLException {
+        ObservableList standings = FXCollections.observableArrayList();
+        String sql = "Select * from standings where league_id =? ";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,league.getId());
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()){
+            Standings standing = new Standings(result.getInt("id"),
+                    TeamRepository.findById(result.getInt("team_id")),
+                    LeagueRepository.findById(result.getInt("league_id")),
+                    result.getInt("matches_played"),
+                    result.getInt("wins"),
+                    result.getInt("draws"),
+                    result.getInt("losses"),
+                    result.getInt("goals_for"),
+                    result.getInt("goals_against"),
+                    result.getInt("points")
+                    );
+            standings.add(standing);
+        }
+        return standings;
     }
 }
