@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700" prefWidth="1200" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="700" prefWidth="1200" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LeagueStandingsController">
     <children>
         <BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #CED4DA;">
             <left>
@@ -34,11 +34,23 @@
                                     <children>
                                         <HBox prefHeight="47.0" prefWidth="649.0" style="-fx-background-radius: 0 30 0 30;">
                                             <children>
-                                                <Button fx:id="leagueName" mnemonicParsing="false" prefHeight="40.0" prefWidth="657.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="League Name">
+                                    <Button fx:id="leagueName" mnemonicParsing="false" prefHeight="55.0" prefWidth="276.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="League Name">
+                                       <graphic>
+                                          <ImageView fx:id="leagueImage" fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" styleClass="leagueimage">
+                                             <image>
+                                                <Image url="@../images/Premier League/Premier%20League%20Lion.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Verdana Bold" size="15.0" />
+                                       </font>
+                                    </Button>
+                                                <Button fx:id="topScorers" mnemonicParsing="false" prefHeight="56.0" prefWidth="177.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Top Scores">
                                                     <graphic>
-                                                        <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" styleClass="leagueimage">
+                                                        <ImageView fitHeight="46.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="leagueimage">
                                                             <image>
-                                                                <Image url="@../images/Premier League/Premier%20League%20Lion.png" />
+                                                                <Image url="@../images/soccer_ball_512px.png" />
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
@@ -46,6 +58,18 @@
                                                         <Font name="Verdana Bold" size="15.0" />
                                                     </font>
                                                 </Button>
+                                    <Button fx:id="topAssists" alignment="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="166.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Top Assists">
+                                       <graphic>
+                                          <ImageView fitHeight="52.0" fitWidth="45.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" styleClass="leagueimage">
+                                             <image>
+                                                <Image url="@../images/cleats_512px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Verdana Bold" size="15.0" />
+                                       </font>
+                                    </Button>
                                             </children>
                                         </HBox>
                                         <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="763.0" spacing="10.0">

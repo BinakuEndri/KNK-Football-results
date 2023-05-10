@@ -7,28 +7,44 @@ import Services.ImagesToResources;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+import java.io.IOException;
 
-public class LeagueStandingsController implements Initializable {
+
+public class LeagueStandingsController {
     @FXML
     private VBox vbox1;
     @FXML
     private Button leagueName;
 
-    private League league;
+    @FXML
+    private Button topScorers;
+    @FXML
+    private Button topAssists;
 
-    public LeagueStandingsController(League league){
-        this.league =league;
+    private League league;
+    @FXML
+    private ImageView leagueImage;
+
+    public VBox getVbox1() {
+        return vbox1;
+    }
+
+    public void setLeague(League league) {
+        this.league = league;
+    }
+
+    public void setLeagueNameText(String leagueName) {
+        this.leagueName.setText(leagueName);
     }
 
     public void addTeamStandings(VBox vbox1){
@@ -49,11 +65,51 @@ public class LeagueStandingsController implements Initializable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            Image imageLeague = new Image(ImagesToResources.getImagePath() + "\\" + league.getName() + "\\" +league.getLeague_logo());
+            leagueImage.setImage(imageLeague);
+            topScorers.setOnAction( actionEvent -> {
+                topScorers.setUserData(league);
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("topScorer.fxml"));
+                Parent root;
+                try {
+                    root = fxmlLoader.load();
+                    TopScorerController topScorerController = fxmlLoader.getController();
+                    topScorerController.setDataScorer(league);
+                   // Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    Stage stage = new Stage();
+                    Image image = new Image(ImagesToResources.getImagePath()+"\\"+"logo.png");
+                    stage.getIcons().add(image);
+                    Scene scene = new Scene(root,1100,550);
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            topAssists.setOnAction(actionEvent -> {
+                topAssists.setUserData(league);
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("topScorer.fxml"));
+                Parent root;
+                try {
+                    root = fxmlLoader.load();
+                    TopScorerController topScorerController = fxmlLoader.getController();
+                    topScorerController.setDataAssister(league);
+                   // Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    Stage stage = new Stage();
+                    Image image = new Image(ImagesToResources.getImagePath()+"\\"+"logo.png");
+                    stage.getIcons().add(image);
+                    Scene scene = new Scene(root,1100,550);
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
         }
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        addTeamStandings(vbox1);
-        leagueName.setText(league.getName());
-    }
+
 }

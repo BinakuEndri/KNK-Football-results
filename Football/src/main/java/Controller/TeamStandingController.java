@@ -1,11 +1,22 @@
 package Controller;
 
+import Models.League;
 import Models.Standings;
+import Models.Team;
+import Repository.TeamRepository;
 import Services.ImagesToResources;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class TeamStandingController {
 
@@ -40,6 +51,8 @@ public class TeamStandingController {
     @FXML
     private Label teamPointStanding;
 
+
+
     private String imagePath = ImagesToResources.getImagePath();
 
     public void setData(Standings standings,Image img){
@@ -68,6 +81,31 @@ public class TeamStandingController {
         gamesDrawnStanding.setText(gameDrawn);
         goalsAgainstStanding.setText(goalsAgainst);
         GoalsForStanding.setText(goalsFor);
+        Team team = standings.getTeam_id();
+        League league = standings.getLeague_id();
+        teamNameStanding.setUserData(team);
+        teamNameStanding.setOnMouseClicked( event ->{
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("teamDetails.fxml"));
+            Parent root = null;
+            try {
+
+                Team team1 = (Team) teamNameStanding.getUserData();
+                root = loader.load();
+
+                TeamDetailsController teamDetailsController = loader.getController();
+                teamDetailsController.setData(league,team1);
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root, 1200, 700);
+                stage.setScene(scene);
+                stage.show();
+
+            }catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
 }

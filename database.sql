@@ -594,7 +594,7 @@ SET matches_played = 0,
     goals_for = 0,
     goals_against = 0,
     points = 0
-Where id =2 or id = 3 or id=4;
+Where id =6 or id = 7 or id=8 or id =9;
 
 INSERT INTO match_statistics (match_id, home_team_goals, away_team_goals, possession_home, possession_away, shots_home, shots_away, corners_home, corners_away, fouls_home, fouls_away, yellow_cards_home, yellow_cards_away, red_cards_home, red_cards_away)
 VALUES (8, 2, 1, 0.6, 0.4, 10, 5, 8, 3, 12, 7, 2, 3, 0, 1);
@@ -606,7 +606,7 @@ Drop foreign key league_matches_ibfk_2,
 add  FOREIGN KEY (match_id) REFERENCES Matches(id) on delete Cascade;
 
 Delimiter $$
-CREATE TRIGGER update_standings_on_delete AFTER DELETE ON Matches
+CREATE TRIGGER update_standings_on_delete Before DELETE ON Matches
 FOR EACH ROW
 BEGIN
   DECLARE home_team_id INT;
@@ -674,5 +674,19 @@ BEGIN
 END $$
 Delimiter ;
 
-delete from matches;
+delete from matches where id =13;
+delete from standings;
+
+insert into Standings (team_id,league_id) Values
+(4,1 ),
+(5, 1),
+(6, 1),
+(7,1); 
+
+
+
+UPDATE player_statistics
+SET goals = 0,
+	assists =0
+Where id =1 or id = 2 or id=3 or id =4;
 

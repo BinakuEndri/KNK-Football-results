@@ -32,7 +32,7 @@ public class PlayerRepository {
         squad.setId(SquadRepository.findIdByTeam(team).getId());
         SquadPlayers squad_players = new SquadPlayers(squad,player);
         SquadPlayerRepository.insert(squad_players);
-        PlayerStatistics playerStatistics = new PlayerStatistics(0,player,0,0,0,0,0);
+        PlayerStatistics playerStatistics = new PlayerStatistics(0,player,0,0);
         PlayerStatisticsRepository.insertByPlayer(playerStatistics);
 
 
@@ -211,7 +211,7 @@ public class PlayerRepository {
         colPlayerLeague.setCellValueFactory(new PropertyValueFactory<>("league"));
     }
 
-    static ObservableList<Player> getAllPlayerByTeam(Team team) throws SQLException{
+    public static ObservableList<Player> getAllPlayerByTeam(Team team) throws SQLException{
         ObservableList players = FXCollections.observableArrayList();
         String sql = "Select * from player p " +
                 "inner join squad_players sp on sp.player_id = p.id " +
@@ -250,4 +250,90 @@ public class PlayerRepository {
         }
     }
 
+    public static ObservableList<Player> getAllPlayerByLeagueGoals(League league) throws SQLException {
+        ObservableList players = FXCollections.observableArrayList();
+        String sql = "Select * from player p " +
+                "Inner join squad_players sp on sp.player_id = p.id " +
+                "Inner join squad s on sp.squad_id = s.id " +
+                "Inner join team t on t.id = s.team_id " +
+                "Inner join nation n on n.id = p.nationality " +
+                "Inner join league_teams lt on lt.team_id = t.id " +
+                "Inner join league l on l.id = lt.league_id " +
+                "Inner join player_statistics ps on ps.player_id = p.id " +
+                "Where l.id = ? " +
+                "Order By ps.goals desc;";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,league.getId());
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()){
+            Player player = new Player(
+                    result.getInt("id"),
+                    result.getString("name"),
+                    result.getString("position"),
+                    result.getDate("birthday"),
+                    NationRepository.findById(result.getInt("nationality")),
+                    result.getString("image")
+
+            );
+            players.add(player);
+        }
+        return players;
+    }
+
+    public static Team getPlayerTeam(Player player) throws SQLException {
+        String sql = "Select * from team t " +
+                "inner join squad s on s.team_id = t.id " +
+                "inner join squad_players sp on sp.squad_id = s.id " +
+                "inner join player p on sp.player_id = p.id " +
+                "where p.id = ?";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,player.getId());
+        ResultSet result = statement.executeQuery();
+        while (result.next()){
+            Team team = new Team(result.getInt("id"),
+                    result.getString("name"),
+                    result.getString("stadium"),
+                    result.getString("year"),
+                    result.getString("logo")
+
+            );
+            return team;
+        }
+        return null;
+    }
+
+    public static ObservableList<Player> getAllPlayerByLeagueAssist(League league) throws SQLException {
+        ObservableList players = FXCollections.observableArrayList();
+        String sql = "Select * from player p " +
+                "Inner join squad_players sp on sp.player_id = p.id " +
+                "Inner join squad s on sp.squad_id = s.id " +
+                "Inner join team t on t.id = s.team_id " +
+                "Inner join nation n on n.id = p.nationality " +
+                "Inner join league_teams lt on lt.team_id = t.id " +
+                "Inner join league l on l.id = lt.league_id " +
+                "Inner join player_statistics ps on ps.player_id = p.id " +
+                "Where l.id = ? " +
+                "Order By ps.assists desc;";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,league.getId());
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()){
+            Player player = new Player(
+                    result.getInt("id"),
+                    result.getString("name"),
+                    result.getString("position"),
+                    result.getDate("birthday"),
+                    NationRepository.findById(result.getInt("nationality")),
+                    result.getString("image")
+
+            );
+            players.add(player);
+        }
+        return players;
+    }
 }

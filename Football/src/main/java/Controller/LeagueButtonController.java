@@ -38,14 +38,15 @@ public class LeagueButtonController {
         leagueBtn.setOnAction( actionEvent -> {
             try {
 
-
                 League league1 = (League) leagueBtn.getUserData();
-                System.out.println("Button clicked for league: " + league1.getName());
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("leagueStandings.fxml"));
-                LeagueStandingsController leagueStandingsController = new LeagueStandingsController(league1);
-                loader.setController(leagueStandingsController);
                 Parent root = loader.load();
+                LeagueStandingsController leagueStandingsController = loader.getController();
+                VBox vbox =leagueStandingsController.getVbox1();
+                leagueStandingsController.setLeague(league1);
+                leagueStandingsController.addTeamStandings(vbox);
+                leagueStandingsController.setLeagueNameText(league1.getName());
 
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root,1200,700);
@@ -57,8 +58,6 @@ public class LeagueButtonController {
             }
 
         });
-
     }
-
 
 }

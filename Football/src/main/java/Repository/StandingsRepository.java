@@ -32,7 +32,7 @@ public class StandingsRepository {
     }
     public static ObservableList<Standings> getAllStandings(League league) throws SQLException {
         ObservableList standings = FXCollections.observableArrayList();
-        String sql = "Select * from standings where league_id =? ";
+        String sql = "Select * from standings where league_id =? order by points desc";
         Connection connection = ConnectionUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1,league.getId());

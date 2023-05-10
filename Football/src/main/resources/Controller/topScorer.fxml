@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="550.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TopScorerController">
+    <children>
+        <BorderPane prefHeight="550.0" prefWidth="1000.0" style="-fx-background-color: #CED4DA;">
+            <left>
+                <VBox alignment="CENTER" prefHeight="586.0" prefWidth="235.0" style="-fx-background-color: #343A40; -fx-background-radius: 0 50 0 0;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="202.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+                </VBox>
+            </left>
+            <center>
+                <BorderPane prefHeight="565.0" prefWidth="864.0" BorderPane.alignment="CENTER">
+                    <center>
+                        <AnchorPane prefHeight="500.0" prefWidth="746.0" style="-fx-border-radius: 0 50 50;" BorderPane.alignment="CENTER">
+                            <BorderPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </BorderPane.margin>
+                            <children>
+                                <VBox layoutX="2.0" layoutY="10.0" prefHeight="493.0" prefWidth="822.0" spacing="10.0" style="-fx-background-color: #343A40; -fx-background-radius: 30  30  30 30;">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="762.0" style="-fx-background-radius: 0 30 0 30;">
+                                            <children>
+                                                <ImageView fx:id="leagueLogo" fitHeight="81.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/Premier%20League/Arsenal/arsenal_fc_480px.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label fx:id="leagueName" contentDisplay="CENTER" prefHeight="42.0" prefWidth="349.0" text="League Name" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="30.0" />
+                                                    </font>
+                                                </Label>
+                                                <HBox alignment="BOTTOM_RIGHT" prefHeight="130.0" prefWidth="424.0" spacing="10.0" />
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets left="30.0" right="30.0" top="10.0" />
+                                            </VBox.margin>
+                                        </HBox>
+                                        <ScrollPane hbarPolicy="NEVER" prefHeight="440.0" prefWidth="763.0" style="-fx-background-color: #343A40;">
+                                            <VBox.margin>
+                                                <Insets bottom="30.0" left="30.0" right="30.0" />
+                                            </VBox.margin>
+                                            <content>
+                                                <VBox fx:id="vbox1" prefHeight="360.0" prefWidth="761.0" style="-fx-background-color: #343A40;">
+                                                    <children>
+                                                        <GridPane prefHeight="56.0" prefWidth="761.0" style="-fx-background-color: #CED4DA; -fx-background-radius: 30 30 0 0;">
+                                                            <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="110.0" prefWidth="100.0" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="210.0" prefWidth="210.0" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                                                            </columnConstraints>
+                                                            <rowConstraints>
+                                                                <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                                                <RowConstraints maxHeight="45.0" minHeight="35.0" prefHeight="39.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                                            </rowConstraints>
+                                                            <children>
+                                                                <Label fx:id="topScorers" alignment="CENTER" prefHeight="28.0" prefWidth="760.0" text="Top Scorers" textFill="#343a40" GridPane.columnSpan="2147483647">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="23.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label fx:id="goals" alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Goals" textFill="#343a40" GridPane.rowIndex="1">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="23.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label alignment="CENTER" prefHeight="35.0" prefWidth="211.0" text="Name" textFill="#343a40" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="23.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Position" textFill="#343a40" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="23.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Nation" textFill="#343a40" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="23.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Image" textFill="#343a40" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="23.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Team" textFill="#343a40" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="23.0" />
+                                                                    </font>
+                                                                </Label>
+                                                            </children>
+                                                        </GridPane>
+
+                                                    </children>
+                                                </VBox>
+                                            </content>
+                                        </ScrollPane>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </center>
+                </BorderPane>
+            </center>
+        </BorderPane>
+    </children>
+
+</AnchorPane>

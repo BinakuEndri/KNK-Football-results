@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700" prefWidth="1200" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TeamDetailsController">
+    <children>
+        <BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #CED4DA;">
+            <left>
+                <VBox prefHeight="637.0" prefWidth="304.0" style="-fx-background-color: #343A40; -fx-background-radius: 0 50 0 0;" BorderPane.alignment="CENTER">
+                    <children>
+                        <fx:include source="navbar.fxml" />
+                    </children>
+                </VBox>
+            </left>
+            <center>
+                <BorderPane prefHeight="0.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <center>
+                        <AnchorPane prefHeight="700.0" prefWidth="746.0" style="-fx-border-radius: 0 50 50;" BorderPane.alignment="CENTER">
+                            <BorderPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </BorderPane.margin>
+                            <children>
+                                <VBox layoutX="17.0" layoutY="14.0" prefHeight="593.0" prefWidth="823.0" spacing="10.0" style="-fx-background-color: #343A40; -fx-background-radius: 30  30  30 30;">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="127.0" prefWidth="763.0" style="-fx-background-radius: 0 30 0 30;">
+                                 <children>
+                                    <ImageView fx:id="teamLogo" fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Premier%20League/Arsenal/arsenal_fc_480px.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="teamName" contentDisplay="CENTER" prefHeight="63.0" prefWidth="208.0" text="Team Name" textFill="WHITE">
+                                       <font>
+                                          <Font size="35.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="130.0" prefWidth="424.0" spacing="10.0">
+                                       <children>
+                                          <GridPane prefHeight="130.0" prefWidth="431.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="313.0" />
+                                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="111.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="65.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                                              <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="65.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Label fx:id="coachName" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="63.0" prefWidth="208.0" text="Coach Name" textFill="WHITE" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font size="25.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fx:id="coachImage" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
+                                                   <image>
+                                                      <Image url="@../images/Premier%20League/Mikel%20Arteta/man51018.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <ImageView fx:id="coachNationFlag" fitHeight="40.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/Nations/es.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="30.0" right="30.0" top="10.0" />
+                                 </VBox.margin>
+                                        </HBox>
+                                        <ScrollPane hbarPolicy="NEVER" prefHeight="400.0" prefWidth="763.0" style="-fx-background-color: #343A40;">
+                                            <VBox.margin>
+                                                <Insets bottom="30.0" left="30.0" right="30.0" />
+                                            </VBox.margin>
+                                            <content>
+                                                <VBox fx:id="vbox1" prefHeight="398.0" prefWidth="761.0" style="-fx-background-color: #343A40;">
+                                       <children>
+                                          <GridPane prefHeight="68.0" prefWidth="761.0" style="-fx-background-color: #CED4DA; -fx-background-radius: 30 30 0 0;">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="110.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="210.0" prefWidth="210.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                              <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="50.0" prefWidth="768.0" text="Players" textFill="#343a40" GridPane.columnSpan="2147483647">
+                                                   <font>
+                                                      <Font name="System Bold" size="23.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Image" textFill="#343a40" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="23.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="35.0" prefWidth="211.0" text="Name" textFill="#343a40" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="23.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Goals" textFill="#343a40" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="23.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Assists" textFill="#343a40" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="23.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Position" textFill="#343a40" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="23.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Nation" textFill="#343a40" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="23.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </GridPane>
+
+                                       </children>
+                                                </VBox>
+                                            </content>
+                                        </ScrollPane>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </center>
+                </BorderPane>
+            </center>
+            <top>
+                <AnchorPane prefHeight="40.0" prefWidth="1200.0" style="-fx-background-color: #343A40;" BorderPane.alignment="CENTER" />
+            </top>
+        </BorderPane>
+    </children>
+</AnchorPane>
