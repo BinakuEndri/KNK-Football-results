@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -17,7 +16,7 @@
             <left>
                 <VBox prefHeight="0.0" prefWidth="300.0" style="-fx-background-color: #343A40; -fx-background-radius: 0 50 0 0;" BorderPane.alignment="CENTER">
                     <children>
-                        <fx:include source="adminNavbar.fxml"></fx:include>
+                        <fx:include source="adminNavbar.fxml" />
                     </children>
                 </VBox>
             </left>
@@ -77,8 +76,25 @@
                         </HBox>
                         <HBox layoutX="83.0" layoutY="304.0" prefHeight="341.0" prefWidth="735.0" spacing="50.0">
                            <children>
-                              <VBox prefHeight="341.0" prefWidth="348.0" style="-fx-background-color: #343A40; -fx-background-radius: 0 0 0 30;" />
-                              <VBox prefHeight="341.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 0 0 30 0;" />
+                              <VBox prefHeight="341.0" prefWidth="769.0" style="-fx-background-color: #343A40; -fx-background-radius: 0 0 0 30;">
+                                 <children>
+                                    <StackedBarChart fx:id="stackedBar" prefHeight="338.0" prefWidth="735.0">
+                                      <xAxis>
+                                        <CategoryAxis label="Players" prefHeight="19.0" prefWidth="656.0" side="BOTTOM" tickLabelFill="WHITE" tickLabelsVisible="false">
+                                             <tickLabelFont>
+                                                <Font size="10.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis label="Goals" side="LEFT" tickLabelFill="WHITE">
+                                             <tickLabelFont>
+                                                <Font size="11.0" />
+                                             </tickLabelFont>
+                                          </NumberAxis>
+                                      </yAxis>
+                                    </StackedBarChart>
+                                 </children></VBox>
                            </children>
                         </HBox>
                      </children>

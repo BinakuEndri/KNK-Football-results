@@ -6,6 +6,7 @@ import Services.CostumedAlerts;
 import Services.ImagesToResources;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -335,5 +336,22 @@ public class PlayerRepository {
             players.add(player);
         }
         return players;
+    }
+
+    public static void getTopScorers(XYChart.Series<String, Integer> series1, XYChart.Series<String, Integer> series2) throws SQLException {
+        String sql = "SELECT p.name,ps.goals as goals , COUNT(CASE WHEN g.penalty = 1 THEN 1 END) AS penalties_scored\n" +
+                "FROM Player p\n" +
+                "JOIN Player_Statistics ps ON p.id = ps.player_id\n" +
+                "JOIN Goal g ON ps.player_id = g.scored\n" +
+                "GROUP BY p.name, ps.goals\n" +
+                "ORDER BY ps.goals DESC\n" +
+                "LIMIT 10;";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet result = statement.executeQuery();
+        while (result.next()){
+            series1.getData().add(new XYChart.Data<>(result.getString("name"),result.getInt("penalties_scored")));
+            series2.getData().add(new XYChart.Data<>(result.getString("name"),result.getInt("goals")));
+        }
     }
 }

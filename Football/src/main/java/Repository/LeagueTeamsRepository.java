@@ -3,6 +3,7 @@ package Repository;
 import Models.League;
 import Models.LeagueTeams;
 import Models.Squad;
+import Models.Team;
 import Services.ConnectionUtil;
 
 import java.sql.Connection;
@@ -28,6 +29,20 @@ public class LeagueTeamsRepository {
         Connection connection = ConnectionUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1,league.getId());
+        ResultSet result = statement.executeQuery();
+        while (result.next()){
+            LeagueTeams leagueTeams = new LeagueTeams(LeagueRepository.findById(result.getInt("league_id")),
+                    TeamRepository.findById(result.getInt("team_id")));
+            return leagueTeams;
+        }
+        return null;
+    }
+
+    public static LeagueTeams findByLeague(Team team) throws SQLException {
+        String sql = "Select * from league_teams where team_id = ?";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,team.getId());
         ResultSet result = statement.executeQuery();
         while (result.next()){
             LeagueTeams leagueTeams = new LeagueTeams(LeagueRepository.findById(result.getInt("league_id")),

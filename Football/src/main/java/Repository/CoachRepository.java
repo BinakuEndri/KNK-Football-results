@@ -148,10 +148,6 @@ public class CoachRepository {
 
     }
 
-
-
-
-
     private static int findIdByData(Coach coach) throws SQLException {
         String sql = "Select * from coach where name=? and birthday= ? and nationality=? and image = ?";
         Connection connection = ConnectionUtil.getConnection();

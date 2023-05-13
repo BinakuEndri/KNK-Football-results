@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="148.0" prefWidth="640.0" spacing="5.0" style="-fx-background-color: #343A40; -fx-background-radius: 30 30 30 30;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MatchRowController">
+    <children>
+        <GridPane prefHeight="50.0" prefWidth="640.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="48.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="82.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="537.0" minWidth="10.0" prefWidth="510.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <ImageView fx:id="leagueLogo" fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                    <image>
+                        <Image url="@../images/Premier%20League/the_premier_league_480px.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="leagueName" prefHeight="50.0" prefWidth="328.0" text="League Name" textFill="WHITE" GridPane.columnIndex="2">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </GridPane>
+        <GridPane prefHeight="75.0" prefWidth="640.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="88.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="198.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="208.0" minWidth="10.0" prefWidth="33.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="208.0" minWidth="5.0" prefWidth="14.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="28.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="210.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="82.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="56.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="30.0" minHeight="3.0" prefHeight="18.0" valignment="CENTER" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <ImageView fx:id="homeTeamLogo" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/Premier%20League/Arsenal/arsenal_fc_480px.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="homeTeamName" alignment="CENTER" contentDisplay="CENTER" prefHeight="157.0" prefWidth="256.0" text="Home Team" textFill="WHITE" GridPane.columnIndex="1">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="awayTeamName" alignment="CENTER" contentDisplay="CENTER" prefHeight="157.0" prefWidth="256.0" text="Away Team" textFill="WHITE" GridPane.columnIndex="5">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="homeTeamGoals" alignment="CENTER" contentDisplay="CENTER" prefHeight="157.0" prefWidth="256.0" text="10" textFill="WHITE" GridPane.columnIndex="2">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="awayTeamGoals" alignment="CENTER" contentDisplay="CENTER" prefHeight="157.0" prefWidth="256.0" text="10" textFill="WHITE" GridPane.columnIndex="4">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="157.0" prefWidth="256.0" text=":" textFill="WHITE" GridPane.columnIndex="3">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <ImageView fx:id="awayTeamLogo" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6">
+                    <image>
+                        <Image url="@../images/Premier%20League/Manchester%20United/Manchester_United_FC_crest.svg.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="matchDate" alignment="CENTER" prefHeight="35.0" prefWidth="82.0" text="23/08/2023" textFill="WHITE" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+            </children>
+        </GridPane>
+    </children>
+    <padding>
+        <Insets bottom="10.0" top="10.0" />
+    </padding>
+
+</VBox>

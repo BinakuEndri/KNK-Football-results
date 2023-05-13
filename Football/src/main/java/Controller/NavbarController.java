@@ -3,16 +3,23 @@ package Controller;
 import Models.League;
 import Repository.LeagueRepository;
 import Services.ImagesToResources;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -23,7 +30,6 @@ public class NavbarController implements Initializable {
     private Button homeBtn;
     @FXML
     private VBox vbox;
-
 
 
     public void fetchToNavbar(VBox vbox){
@@ -42,9 +48,25 @@ public class NavbarController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+    private void toLandingPage(){
+        homeBtn.setOnAction(actionEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("landing.fxml"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root,1200,700);
+            stage.setScene(scene);
+            stage.show();
+        });
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fetchToNavbar(vbox);
+        toLandingPage();
     }
 }

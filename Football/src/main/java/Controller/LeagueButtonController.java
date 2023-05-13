@@ -28,6 +28,8 @@ public class LeagueButtonController {
     @FXML
     private ImageView leagueImage;
 
+    private boolean isLoading = false;
+
 
 
     public void setData(League league){
@@ -37,8 +39,15 @@ public class LeagueButtonController {
         leagueBtn.setUserData(league);
         leagueBtn.setOnAction( actionEvent -> {
             try {
+                if (isLoading) {
+                    return;
+                }
+                isLoading = true;
+                leagueBtn.setDisable(true); // Disable the button during loading
+
 
                 League league1 = (League) leagueBtn.getUserData();
+
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("leagueStandings.fxml"));
                 Parent root = loader.load();
@@ -55,6 +64,9 @@ public class LeagueButtonController {
 
             }catch (IOException e){
                 throw new RuntimeException(e);
+            } finally {
+                isLoading = false;
+                leagueBtn.setDisable(false); // Re-enable the button after loading
             }
 
         });
