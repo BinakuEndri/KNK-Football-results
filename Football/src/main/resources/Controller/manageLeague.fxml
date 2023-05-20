@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,7 +13,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ManageLeagueController">
     <children>
-        <BorderPane prefHeight="700.0" style="-fx-background-color: #CED4DA;" AnchorPane.topAnchor="0.0">
+        <BorderPane prefHeight="700.0" style="-fx-background-color: #CED4DA;" stylesheets="@../css/design.css" AnchorPane.topAnchor="0.0">
             <left>
                 <VBox prefHeight="0.0" prefWidth="300.0" style="-fx-background-color: #343A40; -fx-background-radius: 0 50 0 0;" BorderPane.alignment="CENTER">
                     <children>
@@ -30,33 +31,68 @@
                                         <VBox layoutX="53.0" layoutY="47.0" prefHeight="355.0" prefWidth="226.0" spacing="10.0">
                                             <children>
                                                 <Label prefHeight="18.0" prefWidth="72.0" text="ID" />
-                                                <TextField fx:id="txtLeagueId" prefHeight="37.0" prefWidth="264.0" />
+                                                <TextField fx:id="txtLeagueId" prefHeight="37.0" prefWidth="264.0" styleClass="chose" />
                                                 <Label prefHeight="18.0" prefWidth="79.0" text="Name" />
-                                                <TextField fx:id="txtLeagueName" prefHeight="36.0" prefWidth="264.0" />
+                                                <TextField fx:id="txtLeagueName" prefHeight="36.0" prefWidth="264.0" styleClass="chose" />
                                                 <Label prefHeight="18.0" prefWidth="72.0" text="Logo" />
                                                 <VBox alignment="CENTER" prefHeight="121.0" prefWidth="198.0" style="-fx-background-color: #CED4DA;">
                                        <children>
                                                         <ImageView fx:id="leaguePhoto" fitHeight="142.0" fitWidth="130.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                                 </VBox>
-                                                  <Button fx:id="btnBrowseImage" mnemonicParsing="false" onAction="#browseImage" prefHeight="31.0" prefWidth="97.0" text="Browes Photo" />
+                                                  <Button fx:id="btnBrowseImage" mnemonicParsing="false" onAction="#browseImage" prefHeight="31.0" prefWidth="97.0" text="Browes Photo">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/Icons/browse_folder_240px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                             </children>
                                         </VBox>
                                         <VBox layoutX="336.0" layoutY="49.0" prefHeight="472.0" prefWidth="455.0" spacing="10.0">
                                             <children>
-                                    <TableView fx:id="tableLeagues" prefHeight="474.0" prefWidth="455.0">
+                                    <TableView fx:id="tableLeagues" prefHeight="474.0" prefWidth="455.0" styleClass="table">
                                       <columns>
-                                        <TableColumn fx:id="colLeagueId" prefWidth="97.0" text="ID" />
-                                          <TableColumn fx:id="colLeagueName" prefWidth="231.0" text="Name" />
-                                          <TableColumn fx:id="colLeagueNumberOfTeams" prefWidth="126.0" text="Numer of Teams" />
+                                        <TableColumn fx:id="colLeagueId" prefWidth="97.0" styleClass="columns" text="ID" />
+                                          <TableColumn fx:id="colLeagueName" prefWidth="231.0" styleClass="columns" text="Name" />
+                                          <TableColumn fx:id="colLeagueNumberOfTeams" prefWidth="126.0" styleClass="columns" text="Numer of Teams" />
                                       </columns>
                                     </TableView>
                                             </children>
                                         </VBox>
-                                        <Button fx:id="btnAddLeague" layoutX="53.0" layoutY="421.0" mnemonicParsing="false" onAction="#addLeague" prefHeight="38.0" prefWidth="92.0" text="Add League" />
-                              <Button fx:id="btnUpdateLeague" layoutX="172.0" layoutY="420.0" mnemonicParsing="false" onAction="#updateLeague" prefHeight="40.0" prefWidth="92.0" text="Update" />
-                              <Button fx:id="btnClearLeague" layoutX="53.0" layoutY="478.0" mnemonicParsing="false" onAction="#clearLeagueFields" prefHeight="40.0" prefWidth="92.0" text="Clear" />
-                              <Button fx:id="btnDeleteLeague" layoutX="172.0" layoutY="478.0" mnemonicParsing="false" onAction="#deleteLeague" prefHeight="40.0" prefWidth="92.0" text="Delete" />
+                                        <Button fx:id="btnAddLeague" alignment="TOP_LEFT" layoutX="53.0" layoutY="421.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#addLeague" prefHeight="38.0" prefWidth="110.0" text="Add ">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Icons/Add%20properties_240px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button fx:id="btnUpdateLeague" alignment="TOP_LEFT" layoutX="172.0" layoutY="420.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#updateLeague" prefHeight="40.0" prefWidth="120.0" text="Update">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Icons/refresh_480px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button fx:id="btnClearLeague" alignment="TOP_LEFT" layoutX="53.0" layoutY="478.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#clearLeagueFields" prefHeight="40.0" prefWidth="112.0" text="Clear">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Icons/eraser_480px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button fx:id="btnDeleteLeague" alignment="TOP_LEFT" layoutX="172.0" layoutY="478.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#deleteLeague" prefHeight="40.0" prefWidth="122.0" text="Delete">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Icons/delete_document_240px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                                     </children>
                                 </AnchorPane>
                             </children>

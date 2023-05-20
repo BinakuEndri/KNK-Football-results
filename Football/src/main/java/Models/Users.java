@@ -10,8 +10,9 @@ public class Users {
     private Date Date_Created;
     private Date Date_Modified;
     private Boolean role;
+    private String salt;
 
-    public Users(int id, String fullname, String username, String password, Date date_Created, Date date_Modified, Boolean role) {
+    public Users(int id, String fullname, String username, String password, Date date_Created, Date date_Modified, Boolean role,String salt) {
         this.id = id;
         this.fullname = fullname;
         this.username = username;
@@ -19,6 +20,7 @@ public class Users {
         Date_Created = date_Created;
         Date_Modified = date_Modified;
         this.role = role;
+        this.salt=salt;
     }
 
     public int getId() {
@@ -75,5 +77,13 @@ public class Users {
 
     public void setRole(Boolean role) {
         this.role = role;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

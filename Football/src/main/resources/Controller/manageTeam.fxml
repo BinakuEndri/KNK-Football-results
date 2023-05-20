@@ -16,7 +16,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ManageTeamController">
     <children>
-        <BorderPane prefHeight="700.0" style="-fx-background-color: #CED4DA;">
+        <BorderPane prefHeight="700.0" style="-fx-background-color: #CED4DA;" stylesheets="@../css/design.css">
             <left>
                 <VBox prefHeight="0.0" prefWidth="300.0" style="-fx-background-color: #343A40; -fx-background-radius: 0 50 0 0;" BorderPane.alignment="CENTER">
                     <children>
@@ -34,15 +34,15 @@
                                         <VBox layoutX="53.0" layoutY="28.0" prefHeight="507.0" prefWidth="211.0" spacing="10.0">
                                             <children>
                                                 <Label prefHeight="18.0" prefWidth="72.0" text="Name" />
-                                                <TextField fx:id="txtTeamName" prefHeight="30.0" prefWidth="211.0" />
+                                                <TextField fx:id="txtTeamName" prefHeight="30.0" prefWidth="211.0" styleClass="chose" />
                                                 <Label prefHeight="18.0" prefWidth="79.0" text="Stadium" />
-                                                <TextField fx:id="txtStadiumName" prefHeight="30.0" prefWidth="211.0" />
+                                                <TextField fx:id="txtStadiumName" prefHeight="30.0" prefWidth="211.0" styleClass="chose" />
                                                 <Label prefHeight="18.0" prefWidth="88.0" text="Year" />
-                                    <TextField fx:id="txtTeamYear" prefHeight="30.0" prefWidth="211.0" />
+                                    <TextField fx:id="txtTeamYear" prefHeight="30.0" prefWidth="211.0" styleClass="chose" />
                                     <Label prefHeight="18.0" prefWidth="79.0" text="League" />
-                                    <ComboBox fx:id="choseLeague" prefHeight="27.0" prefWidth="211.0" />
+                                    <ComboBox fx:id="choseLeague" prefHeight="27.0" prefWidth="211.0" styleClass="chose" />
                                                 <Label prefHeight="18.0" prefWidth="72.0" text="Photo" />
-                                    <VBox alignment="CENTER" prefHeight="148.0" prefWidth="211.0" style="-fx-background-color: #ffffff;">
+                                    <VBox alignment="CENTER" prefHeight="148.0" prefWidth="211.0" styleClass="table">
                                        <children>
                                           <ImageView fx:id="teamImage" fitHeight="150.0" fitWidth="150.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                                        </children>
@@ -64,16 +64,16 @@
                                        <children>
                                           <Label text="Select League" />
                                           <Button mnemonicParsing="false" onAction="#fetchFilteredData" prefHeight="25.0" prefWidth="72.0" text="Search" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <ComboBox fx:id="choseLeagueToTable" prefWidth="150.0" GridPane.rowIndex="1" />
+                                          <ComboBox fx:id="choseLeagueToTable" prefWidth="150.0" styleClass="chose" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <TableView fx:id="teamTable" prefHeight="345.0" prefWidth="455.0">
+                                    <TableView fx:id="teamTable" prefHeight="345.0" prefWidth="455.0" styleClass="table">
                                       <columns>
-                                        <TableColumn fx:id="colId" prefWidth="32.0" text="Id" />
-                                        <TableColumn fx:id="colName" prefWidth="117.0" text="Name" />
-                                          <TableColumn fx:id="colStadium" prefWidth="112.0" text="Stadium" />
-                                          <TableColumn fx:id="colYear" prefWidth="73.0" text="Year" />
-                                          <TableColumn fx:id="colLeague" prefWidth="120.0" text="League" />
+                                        <TableColumn fx:id="colId" prefWidth="32.0" styleClass="columns" text="Id" />
+                                        <TableColumn fx:id="colName" prefWidth="117.0" styleClass="columns" text="Name" />
+                                          <TableColumn fx:id="colStadium" prefWidth="112.0" styleClass="columns" text="Stadium" />
+                                          <TableColumn fx:id="colYear" prefWidth="73.0" styleClass="columns" text="Year" />
+                                          <TableColumn fx:id="colLeague" prefWidth="120.0" styleClass="columns" text="League" />
                                       </columns>
                                     </TableView>
                                             </children>
