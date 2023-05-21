@@ -103,37 +103,37 @@
                                               <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Label alignment="CENTER" prefHeight="50.0" prefWidth="768.0" text="Players" textFill="#343a40" GridPane.columnSpan="2147483647">
+                                                <Label fx:id="players" alignment="CENTER" prefHeight="50.0" prefWidth="768.0" text="Players" textFill="#343a40" GridPane.columnSpan="2147483647">
                                                    <font>
                                                       <Font name="System Bold" size="23.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Image" textFill="#343a40" GridPane.rowIndex="1">
+                                                <Label fx:id="image" alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Image" textFill="#343a40" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font name="System Bold" size="23.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER" prefHeight="35.0" prefWidth="211.0" text="Name" textFill="#343a40" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                <Label fx:id="name" alignment="CENTER" prefHeight="35.0" prefWidth="211.0" text="Name" textFill="#343a40" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font name="System Bold" size="23.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Goals" textFill="#343a40" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                <Label fx:id="goals" alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Goals" textFill="#343a40" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font name="System Bold" size="23.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Assists" textFill="#343a40" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                                <Label fx:id="assists" alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Assists" textFill="#343a40" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font name="System Bold" size="23.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Position" textFill="#343a40" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <Label fx:id="position" alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Position" textFill="#343a40" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font name="System Bold" size="23.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Nation" textFill="#343a40" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                <Label fx:id="nation" alignment="CENTER" prefHeight="71.0" prefWidth="169.0" text="Nation" textFill="#343a40" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font name="System Bold" size="23.0" />
                                                    </font>

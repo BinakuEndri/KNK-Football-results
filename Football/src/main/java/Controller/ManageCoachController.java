@@ -22,7 +22,30 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ManageCoachController extends BaseController implements Initializable {
+    @FXML
+    private Label birthday;
 
+    @FXML
+    private Label photo;
+
+    @FXML
+    private Label team;
+
+    @FXML
+    private Label league;
+
+    @FXML
+    private Label selectLeague;
+
+    @FXML
+    private Label selectTeam;
+
+
+    @FXML
+    private Label name;
+
+    @FXML
+    private Label nation;
 
     @FXML
     private ComboBox<League> choseLeagueToTable;
@@ -216,15 +239,29 @@ public class ManageCoachController extends BaseController implements Initializab
     void translateEnglish() {
         Locale currentLocale = new Locale("en");
         ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
-
-
-
+        birthday.setText(translate.getString("label.birthday"));
+        name.setText(translate.getString("label.name"));
+        nation.setText(translate.getString("label.nation"));
+        league.setText(translate.getString("label.league"));
+        team.setText(translate.getString("label.team"));
+        photo.setText(translate.getString("label.photo"));
+        selectLeague.setText(translate.getString("label.selectLeague"));
+        selectTeam.setText(translate.getString("label.selectTeam"));
     }
 
     @Override
     void translateAlbanian() {
         Locale currentLocale = new Locale("sq");
         ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+        birthday.setText(translate.getString("label.birthday"));
+        name.setText(translate.getString("label.name"));
+        nation.setText(translate.getString("label.nation"));
+        league.setText(translate.getString("label.league"));
+        team.setText(translate.getString("label.team"));
+        photo.setText(translate.getString("label.photo"));
+        selectLeague.setText(translate.getString("label.selectLeague"));
+        selectTeam.setText(translate.getString("label.selectTeam"));
+
 
     }
 

@@ -22,6 +22,9 @@ import java.util.ResourceBundle;
 public class TeamDetailsController extends BaseController{
 
     @FXML
+    private Label assists;
+
+    @FXML
     private ImageView coachImage;
 
     @FXML
@@ -29,6 +32,24 @@ public class TeamDetailsController extends BaseController{
 
     @FXML
     private ImageView coachNationFlag;
+
+    @FXML
+    private Label goals;
+
+    @FXML
+    private Label image;
+
+    @FXML
+    private Label name;
+
+    @FXML
+    private Label nation;
+
+    @FXML
+    private Label players;
+
+    @FXML
+    private Label position;
 
     @FXML
     private ImageView teamLogo;
@@ -85,8 +106,13 @@ public class TeamDetailsController extends BaseController{
     void translateEnglish() {
         Locale currentLocale = new Locale("en");
         ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
-
-
+        name.setText(translate.getString("label.name"));
+        assists.setText(translate.getString("label.assists"));
+        position.setText(translate.getString("label.position"));
+        image.setText(translate.getString("label.image"));
+        nation.setText(translate.getString("label.nation"));
+        goals.setText(translate.getString("label.goals"));
+        players.setText(translate.getString("label.players"));
 
     }
 
@@ -94,6 +120,13 @@ public class TeamDetailsController extends BaseController{
     void translateAlbanian() {
         Locale currentLocale = new Locale("sq");
         ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+        name.setText(translate.getString("label.name"));
+        assists.setText(translate.getString("label.assists"));
+        position.setText(translate.getString("label.position"));
+        image.setText(translate.getString("label.image"));
+        nation.setText(translate.getString("label.nation"));
+        goals.setText(translate.getString("label.goals"));
+        players.setText(translate.getString("label.players"));
 
     }
 

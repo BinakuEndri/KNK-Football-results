@@ -39,6 +39,15 @@ public class ManageLeagueController extends BaseController implements Initializa
     private TableView<League> tableLeagues;
 
     @FXML
+    private Label id;
+
+    @FXML
+    private Label logo;
+
+    @FXML
+    private Label name;
+
+    @FXML
     private TextField txtLeagueId;
 
     @FXML
@@ -151,16 +160,16 @@ public class ManageLeagueController extends BaseController implements Initializa
     void translateEnglish() {
         Locale currentLocale = new Locale("en");
         ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
-
-
-
+        name.setText(translate.getString("label.name"));
+        logo.setText(translate.getString("label.logo"));
     }
 
     @Override
     void translateAlbanian() {
         Locale currentLocale = new Locale("sq");
         ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
-
+        name.setText(translate.getString("label.name"));
+        logo.setText(translate.getString("label.logo"));
     }
 
     public void changeLanguage(){

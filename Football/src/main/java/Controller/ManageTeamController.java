@@ -23,6 +23,23 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ManageTeamController extends  BaseController implements Initializable {
+    @FXML
+    private Label league;
+
+    @FXML
+    private Label name;
+
+    @FXML
+    private Label photo;
+
+    @FXML
+    private Label selectLeague;
+
+    @FXML
+    private Label stadium;
+
+    @FXML
+    private Label year;
 
     @FXML
     private Button btnAddTeam;
@@ -187,6 +204,13 @@ public class ManageTeamController extends  BaseController implements Initializab
     void translateAlbanian() {
         Locale currentLocale = new Locale("sq");
         ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+        year.setText(translate.getString("label.year"));
+        name.setText(translate.getString("label.name"));
+        stadium.setText(translate.getString("label.stadium"));
+        league.setText(translate.getString("label.league"));
+        photo.setText(translate.getString("label.photo"));
+        selectLeague.setText(translate.getString("label.selectLeague"));
+
 
     }
 

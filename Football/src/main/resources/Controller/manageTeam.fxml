@@ -33,15 +33,15 @@
                                     <children>
                                         <VBox layoutX="53.0" layoutY="28.0" prefHeight="507.0" prefWidth="211.0" spacing="10.0">
                                             <children>
-                                                <Label prefHeight="18.0" prefWidth="72.0" text="Name" />
+                                                <Label fx:id="name" prefHeight="18.0" prefWidth="72.0" text="Name" />
                                                 <TextField fx:id="txtTeamName" prefHeight="30.0" prefWidth="211.0" styleClass="chose" />
-                                                <Label prefHeight="18.0" prefWidth="79.0" text="Stadium" />
+                                                <Label fx:id="stadium" prefHeight="18.0" prefWidth="79.0" text="Stadium" />
                                                 <TextField fx:id="txtStadiumName" prefHeight="30.0" prefWidth="211.0" styleClass="chose" />
-                                                <Label prefHeight="18.0" prefWidth="88.0" text="Year" />
+                                                <Label fx:id="year" prefHeight="18.0" prefWidth="88.0" text="Year" />
                                     <TextField fx:id="txtTeamYear" prefHeight="30.0" prefWidth="211.0" styleClass="chose" />
-                                    <Label prefHeight="18.0" prefWidth="79.0" text="League" />
+                                    <Label fx:id="league" prefHeight="18.0" prefWidth="79.0" text="League" />
                                     <ComboBox fx:id="choseLeague" prefHeight="27.0" prefWidth="211.0" styleClass="chose" />
-                                                <Label prefHeight="18.0" prefWidth="72.0" text="Photo" />
+                                                <Label fx:id="photo" prefHeight="18.0" prefWidth="72.0" text="Photo" />
                                     <VBox alignment="CENTER" prefHeight="148.0" prefWidth="211.0" styleClass="table">
                                        <children>
                                           <ImageView fx:id="teamImage" fitHeight="150.0" fitWidth="150.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
@@ -62,7 +62,7 @@
                                           <RowConstraints maxHeight="29.0" minHeight="30.0" prefHeight="50.0" />
                                       </rowConstraints>
                                        <children>
-                                          <Label text="Select League" />
+                                          <Label fx:id="selectLeague" text="Select League" />
                                           <Button mnemonicParsing="false" onAction="#fetchFilteredData" prefHeight="25.0" prefWidth="72.0" text="Search" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <ComboBox fx:id="choseLeagueToTable" prefWidth="150.0" styleClass="chose" GridPane.rowIndex="1" />
                                        </children>

@@ -52,18 +52,18 @@
                                                 </rowConstraints>
                                                 <children>
                                                     <TextField fx:id="txtCoachName" prefHeight="25.0" prefWidth="142.0" styleClass="chose" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
-                                                    <Label prefHeight="18.0" prefWidth="72.0" text="Name" />
+                                                    <Label fx:id="name" prefHeight="18.0" prefWidth="72.0" text="Name" />
                                                     <DatePicker fx:id="dateCoachBirthday" prefHeight="25.0" prefWidth="259.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
-                                                    <Label prefHeight="18.0" prefWidth="88.0" text="Birthday" GridPane.rowIndex="2" />
-                                                    <Label prefHeight="18.0" prefWidth="88.0" text="Nation" GridPane.rowIndex="4" />
-                                                    <Label prefHeight="18.0" prefWidth="88.0" text="League" GridPane.rowIndex="6" />
-                                                    <Label prefHeight="18.0" prefWidth="88.0" text="Team" GridPane.rowIndex="8" />
+                                                    <Label fx:id="birthday" prefHeight="18.0" prefWidth="88.0" text="Birthday" GridPane.rowIndex="2" />
+                                                    <Label fx:id="nation" prefHeight="18.0" prefWidth="88.0" text="Nation" GridPane.rowIndex="4" />
+                                                    <Label fx:id="league" prefHeight="18.0" prefWidth="88.0" text="League" GridPane.rowIndex="6" />
+                                                    <Label fx:id="team" prefHeight="18.0" prefWidth="88.0" text="Team" GridPane.rowIndex="8" />
                                                     <ComboBox fx:id="choseCoachNation" prefHeight="25.0" prefWidth="245.0" styleClass="chose" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" />
                                                     <ComboBox fx:id="choseCoachLeague" prefHeight="25.0" prefWidth="251.0" styleClass="chose" GridPane.columnSpan="2147483647" GridPane.rowIndex="7" />
                                                     <ComboBox fx:id="choseCoachTeam" prefHeight="25.0" prefWidth="275.0" styleClass="chose" GridPane.columnSpan="2147483647" GridPane.rowIndex="9" />
                                                 </children>
                                             </GridPane>
-                                            <Label prefHeight="18.0" prefWidth="72.0" text="Photo" />
+                                            <Label fx:id="photo" prefHeight="18.0" prefWidth="72.0" text="Photo" />
                                             <VBox alignment="CENTER" prefHeight="143.0" prefWidth="226.0" style="-fx-background-color: #ffffff;">
                                                 <children>
                                                     <ImageView fx:id="imageCoach" fitHeight="143.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true" />
@@ -86,9 +86,9 @@
                                                     <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
                                                 </rowConstraints>
                                                 <children>
-                                                    <Label text="Select League" />
+                                                    <Label fx:id="selectLeague" text="Select League" />
                                                     <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#displayFilteredData" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                    <Label text="Select Team" GridPane.columnIndex="1" />
+                                                    <Label fx:id="selectTeam" text="Select Team" GridPane.columnIndex="1" />
                                                     <ComboBox fx:id="choseLeagueToTable" prefWidth="150.0" styleClass="chose" GridPane.rowIndex="1" />
                                                     <ComboBox fx:id="choseTeamToTable" prefWidth="150.0" styleClass="chose" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                     <Button fx:id="btnClearTable" mnemonicParsing="false" onAction="#clearTableFilter" text="Clear" GridPane.columnIndex="3" GridPane.rowIndex="1" />
