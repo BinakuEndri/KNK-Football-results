@@ -104,6 +104,9 @@ public class ManagePlayerController extends BaseController implements Initializa
     @FXML
     private ComboBox<Team> choseTeamToTable;
     private File fileSource;
+
+    @FXML
+    private Pagination pagination;
     private static String  imagePath = ImagesToResources.getImagePath();
 
 
@@ -154,6 +157,18 @@ public class ManagePlayerController extends BaseController implements Initializa
 
     }
 
+    public void fetchDataToTable(){
+        pagination.setPageCount(100); // Set the total number of pages in the pagination control
+        int rowsPerPage = 10;
+        pagination.setPageFactory(pageIndex -> {
+            try {
+                PlayerRepository.fetchToTablePaginaton(pageIndex, rowsPerPage,tablePlayer,colIdPlayer,colNamePlayer,colPlayerBirthday,colPlayerLeague,colPlayerNation,colPlayerPos,colPlayerTeam); // Get data for the current page
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return tablePlayer;
+        });
+    }
     @FXML
     void clearPlayer(ActionEvent event) {
         txtPlayerPosition.clear();
@@ -301,7 +316,7 @@ public class ManagePlayerController extends BaseController implements Initializa
         NationRepository.setValues(this.chosePlayerNation);
        LeagueRepository.setValues(this.chosePlayerLeague);
        LeagueRepository.setValues(this.choseLeagueToTable);
-        fetchData();
+       fetchDataToTable();
         getDataFromTable();
         changeLanguage();
     }

@@ -195,7 +195,12 @@ public class ManageTeamController extends  BaseController implements Initializab
     void translateEnglish() {
         Locale currentLocale = new Locale("en");
         ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
-
+        year.setText(translate.getString("label.year"));
+        name.setText(translate.getString("label.name"));
+        stadium.setText(translate.getString("label.stadium"));
+        league.setText(translate.getString("label.league"));
+        photo.setText(translate.getString("label.photo"));
+        selectLeague.setText(translate.getString("label.selectLeague"));
 
 
     }

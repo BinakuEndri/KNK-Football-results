@@ -354,4 +354,28 @@ public class PlayerRepository {
             series2.getData().add(new XYChart.Data<>(result.getString("name"),result.getInt("goals")));
         }
     }
+
+    public static void fetchToTablePaginaton(Integer pageIndex, int rowsPerPage, TableView<Player> tablePlayer, TableColumn<Player, Integer> colIdPlayer, TableColumn<Player, String> colNamePlayer, TableColumn<Player, Date> colPlayerBirthday, TableColumn<Player, League> colPlayerLeague, TableColumn<Player, Nation> colPlayerNation, TableColumn<Player, String> colPlayerPos, TableColumn<Player, Team> colPlayerTeam) throws SQLException {
+        ObservableList<Player> players = FXCollections.observableArrayList();
+        int offset = pageIndex* rowsPerPage;
+        String sql = "Select p.id as id, p.name as playerName, p.birthday as birthday, " +
+                "l.id as leagueId, n.id as nationId, p.position , t.id as teamId From player p " +
+                "Inner join squad_players sp on sp.player_id = p.id " +
+                "Inner join squad s on sp.squad_id = s.id " +
+                "Inner join team t on t.id = s.team_id " +
+                "Inner join nation n on n.id = p.nationality " +
+                "Inner join league_teams lt on lt.team_id = t.id " +
+                "Inner join league l on l.id = lt.league_id " +
+                "Limit ? Offset ?";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,rowsPerPage);
+        statement.setInt(2,offset);
+        ResultSet result  = statement.executeQuery();
+
+        while (result.next()){
+            dataToList(players,result);
+        }
+        objectToTable(tablePlayer,colIdPlayer,colNamePlayer,colPlayerBirthday,colPlayerNation,colPlayerPos,colPlayerTeam,colPlayerLeague,players);
+    }
 }

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -177,6 +178,7 @@
                                        </graphic></Button>
                                  </children>
                               </GridPane>
+                              <Pagination fx:id="pagination" layoutX="326.0" layoutY="124.0" prefHeight="397.0" prefWidth="501.0" />
                            </children>
                         </AnchorPane>
                      </children>

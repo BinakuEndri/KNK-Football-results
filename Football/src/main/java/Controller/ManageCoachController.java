@@ -285,5 +285,6 @@ public class ManageCoachController extends BaseController implements Initializab
         LeagueRepository.setValues(this.choseLeagueToTable);
         fetchData();
         getDataFromTable();
+        changeLanguage();
     }
 }
