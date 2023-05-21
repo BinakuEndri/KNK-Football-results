@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -18,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.prefs.Preferences;
 
 
 public class LeagueStandingsController {
@@ -35,6 +37,14 @@ public class LeagueStandingsController {
     @FXML
     private ImageView leagueImage;
 
+    @FXML
+    private Label dashboard;
+    @FXML
+    private Label signOut;
+    @FXML
+    private Label login;
+    private boolean loggedIn;
+
     public VBox getVbox1() {
         return vbox1;
     }
@@ -45,6 +55,60 @@ public class LeagueStandingsController {
 
     public void setLeagueNameText(String leagueName) {
         this.leagueName.setText(leagueName);
+    }
+
+    public void loggedIn(){
+        Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+        loggedIn = prefs.getBoolean("loggedIn",false);
+        dashboard.setVisible(loggedIn);
+        signOut.setVisible(loggedIn);
+        login.setVisible(!loggedIn);
+    }
+    public void toDashboard(){
+        this.dashboard.setOnMouseClicked(actionEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("AdminDashboard.fxml"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root,1200,700);
+            stage.setScene(scene);
+            stage.show();
+        });
+    }
+    public void signOut(){
+        this.signOut.setOnMouseClicked(event -> {
+            try {
+                Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+                prefs.clear();
+                Parent root = FXMLLoader.load(getClass().getResource("landing.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root,1200,700);
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+    }
+    public  void login(){
+        this.login.setOnMouseClicked(event -> {
+            try {
+                Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+                prefs.clear();
+                Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root,1200,700);
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     public void addTeamStandings(VBox vbox1){

@@ -84,6 +84,7 @@ public class TeamStandingController {
         Team team = standings.getTeam_id();
         League league = standings.getLeague_id();
         teamNameStanding.setUserData(team);
+
         teamNameStanding.setOnMouseClicked( event ->{
 
             FXMLLoader loader = new FXMLLoader();

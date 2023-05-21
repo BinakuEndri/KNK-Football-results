@@ -1,26 +1,31 @@
 package Controller;
 
 import Models.*;
-import Repository.LeagueRepository;
 import Repository.LeagueTeamsRepository;
 import Repository.MatchRepository;
 import Repository.MatchStatisticsRepository;
 import Services.ImagesToResources;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class LandingController implements Initializable {
 
@@ -30,6 +35,14 @@ public class LandingController implements Initializable {
 
     @FXML
     private DatePicker datePicker;
+    @FXML
+    private Label dashboard;
+    @FXML
+    private Label signOut;
+    @FXML
+    private Label login;
+
+    private boolean loggedIn;
 
     private  void iterateToArray(VBox vbox, ObservableList<Match> matches){
         for (int i = 0; i < matches.size(); i++) {
@@ -104,8 +117,65 @@ public class LandingController implements Initializable {
             }
 
     }
+
+    public  void toDashboard(){
+        this.dashboard.setOnMouseClicked(actionEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("AdminDashboard.fxml"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root,1200,700);
+            stage.setScene(scene);
+            stage.show();
+        });
+    }
+    private void signOut(){
+        this.signOut.setOnMouseClicked(event -> {
+            try {
+                Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+                prefs.clear();
+                Parent root = FXMLLoader.load(getClass().getResource("landing.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root,1200,700);
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+    }
+    private  void login(){
+        this.login.setOnMouseClicked(event -> {
+            try {
+                Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+                prefs.clear();
+                Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root,1200,700);
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fetchToVBox(vbox);
+        Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+        loggedIn = prefs.getBoolean("loggedIn",false);
+        dashboard.setVisible(loggedIn);
+        signOut.setVisible(loggedIn);
+        login.setVisible(!loggedIn);
+        toDashboard();
+        signOut();
+        login();
     }
 }

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.prefs.Preferences;
 
 public class AdminNavbarController{
     @FXML
@@ -52,6 +53,24 @@ public class AdminNavbarController{
         try {
             changeScene("managePlayer.fxml",event);
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    void backToLanding(ActionEvent event) {
+        try {
+            changeScene("landing.fxml",event);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    void signOut(ActionEvent event) {
+        try {
+            Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+            prefs.clear();
+            changeScene("landing.fxml",event);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

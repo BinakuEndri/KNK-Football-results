@@ -2,8 +2,7 @@ package Controller;
 
 import Models.League;
 import Repository.LeagueRepository;
-import Services.ImagesToResources;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,18 +10,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class NavbarController implements Initializable {
 
@@ -30,6 +25,7 @@ public class NavbarController implements Initializable {
     private Button homeBtn;
     @FXML
     private VBox vbox;
+    @FXML
 
 
     public void fetchToNavbar(VBox vbox){

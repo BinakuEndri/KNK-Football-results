@@ -56,6 +56,10 @@ public class LeagueButtonController {
                 leagueStandingsController.setLeague(league1);
                 leagueStandingsController.addTeamStandings(vbox);
                 leagueStandingsController.setLeagueNameText(league1.getName());
+                leagueStandingsController.signOut();
+                leagueStandingsController.toDashboard();
+                leagueStandingsController.login();
+                leagueStandingsController.loggedIn();
 
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root,1200,700);

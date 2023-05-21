@@ -13,9 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.prefs.Preferences;
 
 public class LoginController {
 
@@ -46,7 +46,10 @@ public class LoginController {
             }else{
                 Parent root = null;
                 try {
-                    root = FXMLLoader.load(getClass().getResource("landing.fxml"));
+                   Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
+                    preferences.putBoolean("loggedIn",true);
+
+                    root = FXMLLoader.load(getClass().getResource("AdminDashboard.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root,1200,700);
                     stage.setScene(scene);

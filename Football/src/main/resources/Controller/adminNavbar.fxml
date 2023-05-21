@@ -66,6 +66,25 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Label prefHeight="17.0" prefWidth="275.0" stylesheets="@../css/button.css" text="Landing" />
+            <Button fx:id="landing" mnemonicParsing="false" onAction="#backToLanding" prefHeight="41.0" prefWidth="272.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="Go To Landing">
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Icons/page_480px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="signOut" mnemonicParsing="false" onAction="#signOut" prefHeight="41.0" prefWidth="272.0" styleClass="leaguebutton" stylesheets="@../css/button.css" text="SignOut">
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Icons/fire_exit_480px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
             <padding>
                 <Insets left="20.0" right="10.0" top="10.0" />
