@@ -5,6 +5,7 @@ import Repository.LeagueTeamsRepository;
 import Repository.MatchRepository;
 import Repository.MatchStatisticsRepository;
 import Services.ImagesToResources;
+import Services.LanguageUtil;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,10 +25,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
-public class LandingController implements Initializable {
+public class LandingController extends BaseController implements Initializable {
 
 
     @FXML
@@ -41,6 +43,9 @@ public class LandingController implements Initializable {
     private Label signOut;
     @FXML
     private Label login;
+
+    @FXML
+    private Label choseDate;
 
     private boolean loggedIn;
 
@@ -177,5 +182,39 @@ public class LandingController implements Initializable {
         toDashboard();
         signOut();
         login();
+        changeLanguage();
+    }
+
+    @Override
+    void translateEnglish() {
+        Locale currentLocale = new Locale("en");
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+
+        login.setText(translate.getString("login"));
+        dashboard.setText(translate.getString("dashboard"));
+        signOut.setText(translate.getString("signOut"));
+        choseDate.setText(translate.getString("choseDate"));
+
+    }
+
+    @Override
+    void translateAlbanian() {
+        Locale currentLocale = new Locale("sq");
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+
+        login.setText(translate.getString("login"));
+        dashboard.setText(translate.getString("dashboard"));
+        signOut.setText(translate.getString("signOut"));
+        choseDate.setText(translate.getString("choseDate"));
+    }
+
+   private void changeLanguage(){
+       LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+           if (newValue.equals("Albanian")) {
+               translateAlbanian();
+           } else {
+               translateEnglish();
+           }
+       });
     }
 }

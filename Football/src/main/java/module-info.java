@@ -6,7 +6,10 @@ module com.example.football {
 
 
     opens Models;
-    opens Controller;
-    opens com.example.football to javafx.fxml;
-    exports Controller;
+
+
+
+
+    opens Controller to javafx.fxml;
+    exports Controller to javafx.graphics;
 }

@@ -9,7 +9,7 @@
 -fx-background-radius: 10px;
 }
 
-.columns{
+.table-view .column-header{
 -fx-background-color:#F5CB5C;
 }
 .table{

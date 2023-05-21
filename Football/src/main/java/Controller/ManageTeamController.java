@@ -7,6 +7,7 @@ import Repository.TeamRepository;
 import Services.BrowseImage;
 import Services.CostumedAlerts;
 import Services.ImagesToResources;
+import Services.LanguageUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,9 +19,10 @@ import java.io.File;
 import java.net.URL;
 import java.nio.file.Path;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class ManageTeamController implements Initializable {
+public class ManageTeamController extends  BaseController implements Initializable {
 
     @FXML
     private Button btnAddTeam;
@@ -170,6 +172,34 @@ public class ManageTeamController implements Initializable {
         }
     }
 
+
+
+    @Override
+    void translateEnglish() {
+        Locale currentLocale = new Locale("en");
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+
+
+
+    }
+
+    @Override
+    void translateAlbanian() {
+        Locale currentLocale = new Locale("sq");
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+
+    }
+
+    public void changeLanguage(){
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                translateAlbanian();
+            } else {
+                translateEnglish();
+            }
+        });
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         LeagueRepository.setValues(this.choseLeague);
@@ -177,5 +207,7 @@ public class ManageTeamController implements Initializable {
 
         fetchData();
         getDataFromTable();
+        changeLanguage();
     }
+
 }

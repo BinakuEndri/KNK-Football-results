@@ -97,6 +97,7 @@ public class TeamStandingController {
 
                 TeamDetailsController teamDetailsController = loader.getController();
                 teamDetailsController.setData(league,team1);
+                teamDetailsController.changeLanguage();
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root, 1200, 700);

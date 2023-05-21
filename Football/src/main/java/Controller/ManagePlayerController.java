@@ -8,6 +8,7 @@ import Repository.TeamRepository;
 import Services.BrowseImage;
 import Services.CostumedAlerts;
 import Services.ImagesToResources;
+import Services.LanguageUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,9 +21,10 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class ManagePlayerController implements Initializable {
+public class ManagePlayerController extends BaseController implements Initializable {
 
 
     @FXML
@@ -223,6 +225,31 @@ public class ManagePlayerController implements Initializable {
     }
 
 
+    @Override
+    void translateEnglish() {
+        Locale currentLocale = new Locale("en");
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+
+
+
+    }
+
+    @Override
+    void translateAlbanian() {
+        Locale currentLocale = new Locale("sq");
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+
+    }
+
+    public void changeLanguage(){
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                translateAlbanian();
+            } else {
+                translateEnglish();
+            }
+        });
+    }
 
 
 
@@ -236,5 +263,6 @@ public class ManagePlayerController implements Initializable {
        LeagueRepository.setValues(this.choseLeagueToTable);
         fetchData();
         getDataFromTable();
+        changeLanguage();
     }
 }

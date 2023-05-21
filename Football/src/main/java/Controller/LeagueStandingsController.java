@@ -4,9 +4,11 @@ import Models.League;
 import Models.Standings;
 import Repository.StandingsRepository;
 import Services.ImagesToResources;
+import Services.LanguageUtil;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,10 +21,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
 
-public class LeagueStandingsController {
+public class LeagueStandingsController extends BaseController {
     @FXML
     private VBox vbox1;
     @FXML
@@ -43,6 +48,25 @@ public class LeagueStandingsController {
     private Label signOut;
     @FXML
     private Label login;
+
+    @FXML
+    private Label D;
+
+    @FXML
+    private Label L;
+    @FXML
+    private Label P;
+
+    @FXML
+    private Label W;
+
+    @FXML
+    private Label goals;
+
+    @FXML
+    private Label team;
+    @FXML
+    private Label pts;
     private boolean loggedIn;
 
     public VBox getVbox1() {
@@ -174,6 +198,54 @@ public class LeagueStandingsController {
                 }
             });
         }
+    }
+
+    @Override
+     void translateEnglish() {
+        Locale currentLocale = new Locale("en");
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+
+        login.setText(translate.getString("login"));
+        dashboard.setText(translate.getString("dashboard"));
+        signOut.setText(translate.getString("signOut"));
+        W.setText(translate.getString("label.W"));
+        P.setText(translate.getString("label.P"));
+        L.setText(translate.getString("label.L"));
+        D.setText(translate.getString("label.D"));
+        team.setText(translate.getString("label.team"));
+        goals.setText(translate.getString("label.goals"));
+        pts.setText(translate.getString("label.pts"));
+        topAssists.setText(translate.getString("topScorer"));
+        topAssists.setText(translate.getString("topAssists"));
+
+    }
+
+    @Override
+     void translateAlbanian() {
+        Locale currentLocale = new Locale("sq");
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+        login.setText(translate.getString("login"));
+        dashboard.setText(translate.getString("dashboard"));
+        signOut.setText(translate.getString("signOut"));
+        W.setText(translate.getString("label.W"));
+        P.setText(translate.getString("label.P"));
+        L.setText(translate.getString("label.L"));
+        D.setText(translate.getString("label.D"));
+        team.setText(translate.getString("label.team"));
+        goals.setText(translate.getString("label.goals"));
+        pts.setText(translate.getString("label.pts"));
+        topAssists.setText(translate.getString("topScorer"));
+        topAssists.setText(translate.getString("topAssists"));
+    }
+
+    public void changeLanguage(){
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                translateAlbanian();
+            } else {
+                translateEnglish();
+            }
+        });
     }
 
 }

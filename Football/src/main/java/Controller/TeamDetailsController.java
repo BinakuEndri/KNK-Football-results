@@ -5,6 +5,7 @@ import Repository.NationRepository;
 import Repository.PlayerRepository;
 import Repository.SquadRepository;
 import Services.ImagesToResources;
+import Services.LanguageUtil;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,8 +16,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
-public class TeamDetailsController {
+public class TeamDetailsController extends BaseController{
 
     @FXML
     private ImageView coachImage;
@@ -76,4 +79,31 @@ public class TeamDetailsController {
                 throw new RuntimeException(e);
             }
         }
+
+
+    @Override
+    void translateEnglish() {
+        Locale currentLocale = new Locale("en");
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+
+
+
+    }
+
+    @Override
+    void translateAlbanian() {
+        Locale currentLocale = new Locale("sq");
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+
+    }
+
+    public void changeLanguage(){
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                translateAlbanian();
+            } else {
+                translateEnglish();
+            }
+        });
+    }
 }

@@ -1,17 +1,51 @@
 package Controller;
 
+import Services.LanguageUtil;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
-public class AdminNavbarController{
+public class AdminNavbarController extends BaseController implements Initializable {
+
+    @FXML
+    private Button landing;
+
+    @FXML
+    private Button manageClub;
+
+    @FXML
+    private Button manageCoach;
+
+    @FXML
+    private Button manageLeague;
+
+    @FXML
+    private Button manageMatches;
+
+    @FXML
+    private Button managePlayers;
+
+    @FXML
+    private Button signOut;
+
+    @FXML
+    private ChoiceBox choseLanguage;
+
+
     @FXML
     void changeSceneClub(ActionEvent event) {
         try {
@@ -82,4 +116,58 @@ public class AdminNavbarController{
         stage.show();
     }
 
+    public void setLanguage(Event event) {
+        if (choseLanguage.getValue() == "Albanian") {
+            try {
+                translateAlbanian();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            LanguageUtil.setLanguage("Albanian");
+        } else {
+            try {
+                translateEnglish();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            LanguageUtil.setLanguage("English");
+        }
+    }
+
+    @Override
+    void translateEnglish() {
+        Locale currentLocale = new Locale("en");
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+
+        manageMatches.setText(translate.getString("button.manageMatches"));
+        manageLeague.setText(translate.getString("button.manageLeague"));
+        manageCoach.setText(translate.getString("button.manageCoach"));
+        manageClub.setText(translate.getString("button.manageClub"));
+        managePlayers.setText(translate.getString("button.managePlayers"));
+        landing.setText(translate.getString("button.landing"));
+        signOut.setText(translate.getString("button.signOut"));
+    }
+
+    @Override
+    void translateAlbanian() {
+
+        Locale currentLocale = new Locale("sq");
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", currentLocale);
+
+        manageMatches.setText(translate.getString("button.manageMatches"));
+        manageLeague.setText(translate.getString("button.manageLeague"));
+        manageCoach.setText(translate.getString("button.manageCoach"));
+        manageClub.setText(translate.getString("button.manageClub"));
+        managePlayers.setText(translate.getString("button.managePlayers"));
+        landing.setText(translate.getString("button.landing"));
+        signOut.setText(translate.getString("button.signOut"));
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        choseLanguage.setValue(LanguageUtil.getLanguage());
+        this.setLanguage(null);
+        choseLanguage.getItems().addAll("English", "Albanian");
+        choseLanguage.setOnAction(this::setLanguage);
+    }
 }

@@ -60,7 +60,7 @@ public class LeagueButtonController {
                 leagueStandingsController.toDashboard();
                 leagueStandingsController.login();
                 leagueStandingsController.loggedIn();
-
+                leagueStandingsController.changeLanguage();
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root,1200,700);
                 stage.setScene(scene);

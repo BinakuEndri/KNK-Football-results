@@ -119,15 +119,15 @@
                                              </graphic></Button>
                                        </children>
                                     </GridPane>
-                                    <TableView fx:id="tablePlayer" prefHeight="339.0" prefWidth="524.0" styleClass="table">
+                                    <TableView fx:id="tablePlayer" prefHeight="339.0" prefWidth="524.0">
                                       <columns>
-                                        <TableColumn fx:id="colIdPlayer" prefWidth="27.0" styleClass="columns" text="Id" />
-                                        <TableColumn fx:id="colNamePlayer" prefWidth="109.0" styleClass="columns" text="Name" />
-                                          <TableColumn fx:id="colPlayerPos" prefWidth="42.0" styleClass="columns" text="Pos" />
-                                          <TableColumn fx:id="colPlayerBirthday" styleClass="columns" text="Birthday" />
-                                          <TableColumn fx:id="colPlayerNation" prefWidth="57.0" styleClass="columns" text="Nation" />
-                                          <TableColumn fx:id="colPlayerLeague" prefWidth="92.0" styleClass="columns" text="League" />
-                                          <TableColumn fx:id="colPlayerTeam" minWidth="8.0" prefWidth="91.0" styleClass="columns" text="Team" />
+                                        <TableColumn fx:id="colIdPlayer" prefWidth="27.0" text="Id" />
+                                        <TableColumn fx:id="colNamePlayer" prefWidth="109.0" text="Name" />
+                                          <TableColumn fx:id="colPlayerPos" prefWidth="42.0" text="Pos" />
+                                          <TableColumn fx:id="colPlayerBirthday" text="Birthday" />
+                                          <TableColumn fx:id="colPlayerNation" prefWidth="57.0" text="Nation" />
+                                          <TableColumn fx:id="colPlayerLeague" prefWidth="92.0" text="League" />
+                                          <TableColumn fx:id="colPlayerTeam" minWidth="8.0" prefWidth="91.0" text="Team" />
                                       </columns>
                                     </TableView>
                                  </children>
